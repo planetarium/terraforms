@@ -18,6 +18,16 @@
         "containerPath": "/data/db",
         "readOnly": false
       }
+    ],
+    "secrets": [
+      {
+        "name": "MONGO_INITDB_ROOT_USERNAME",
+        "valueFrom": "${username_secret_arn}"
+      },
+      {
+        "name": "MONGO_INITDB_ROOT_PASSWORD",
+        "valueFrom": "${password_secret_arn}"
+      }
     ]
   }
 ]

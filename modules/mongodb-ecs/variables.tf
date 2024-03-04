@@ -48,3 +48,13 @@ variable "environment" {
   type        = string
   default     = "dev"
 }
+
+variable "mongodb_username" {
+  description = "Mongodb username"
+  type        = string
+}
+
+variable "mongodb_password" {
+  description = "Mongodb password"
+  type        = string
+}

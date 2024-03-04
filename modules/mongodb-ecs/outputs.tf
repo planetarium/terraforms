@@ -25,5 +25,5 @@ output "ecs_service_id" {
 
 output "ecs_cluster_id" {
   description = "The ID of the ECS cluster"
-  value       = aws_ecs_service.ecs_cluster.id
+  value       = var.create_cluster ? aws_ecs_cluster.ecs_cluster[0].id : var.cluster_id
 }

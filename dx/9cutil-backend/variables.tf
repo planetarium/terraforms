@@ -12,3 +12,13 @@ variable "vpc_id" {
   type        = string
   description = "VPC ID"
 }
+
+variable "mongodb_username" {
+  description = "Mongodb username"
+  type        = string
+}
+
+variable "mongodb_password" {
+  description = "Mongodb password"
+  type        = string
+}

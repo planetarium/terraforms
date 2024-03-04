@@ -1,5 +1,5 @@
 resource "aws_security_group" "mongo_sg" {
-  name        = "${var.cluster_name}_mongodb_sg_${var.environment}"
+  name        = "${var.cluster_name}-mongodb-sg-${var.environment}"
   description = "Allow MongoDB"
   vpc_id      = var.vpc_id
 

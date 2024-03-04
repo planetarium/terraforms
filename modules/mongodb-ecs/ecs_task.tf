@@ -26,5 +26,7 @@ data "template_file" "container_definition" {
   vars = {
     cpu    = var.cpu
     memory = var.memory
+    username_secret_arn = "${aws_secretsmanager_secret.mongodb_secret.arn}:username::"
+    password_secret_arn = "${aws_secretsmanager_secret.mongodb_secret.arn}:password::"
   }
 }

@@ -23,17 +23,19 @@ module "mongodb_ecs" {
   create_cluster              = true
   desired_count               = 1
   subnets                     = var.subnets
+  mongodb_username            = var.mongodb_username
+  mongodb_password            = var.mongodb_password
 }
 
-module "zeroc_ecs" {
-  source = "../../modules/zeroc-ecs"
+# module "zeroc_ecs" {
+#   source = "../../modules/zeroc-ecs"
 
-  cpu                         = 1024
-  memory                      = 2048
-  vpc_id                      = var.vpc_id
-  cluster_i                = moudle.mongodb_ecs.ecs_cluster_id
-  image                       = "git-aa7e94562660561a24565f5581396c4fffdf1336"
-  create_cluster              = false
-  desired_count               = 1
-  subnets                     = var.subnets
-}
+#   cpu                         = 1024
+#   memory                      = 2048
+#   vpc_id                      = var.vpc_id
+#   cluster_id                = moudle.mongodb_ecs.ecs_cluster_id
+#   image                       = "git-aa7e94562660561a24565f5581396c4fffdf1336"
+#   create_cluster              = false
+#   desired_count               = 1
+#   subnets                     = var.subnets
+# }

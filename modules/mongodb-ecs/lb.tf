@@ -1,37 +1,28 @@
-resource "aws_lb" "mongo_alb" {
-  name               = "${var.cluster_name}-mongo-alb-${var.environment}"
-  internal           = false
-  load_balancer_type = "application"
-  security_groups    = [aws_security_group.mongo_sg.id]
-  subnets            = var.subnets
-
+resource "aws_lb" "mongo_nlb" {
+  name                       = "${var.cluster_name}-mongo-nlb-${var.environment}"
+  internal                   = false
+  load_balancer_type         = "network"
+  subnets                    = var.subnets
   enable_deletion_protection = false
 
   tags = {
-    Name = "mongo-alb"
+    Name = "mongo-nlb"
   }
 }
 
 resource "aws_lb_target_group" "mongo_tg" {
   name     = "${var.cluster_name}-mongo-tg-${var.environment}"
-  port     = 80
-  protocol = "HTTP"
+  port     = 27017
+  protocol = "TCP"
   vpc_id   = var.vpc_id
+  target_type = "ip"
 
-  health_check {
-    healthy_threshold   = 2
-    unhealthy_threshold = 2
-    timeout             = 5
-    path                = "/"
-    interval            = 30
-    matcher             = "200"
-  }
 }
 
 resource "aws_lb_listener" "mongo_lb_listener" {
-  load_balancer_arn = aws_lb.mongo_alb.arn
-  port              = 80
-  protocol          = "HTTP"
+  load_balancer_arn = aws_lb.mongo_nlb.arn
+  port              = 27017
+  protocol          = "TCP"
 
   default_action {
     type             = "forward"
