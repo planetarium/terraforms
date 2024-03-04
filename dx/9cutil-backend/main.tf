@@ -27,15 +27,16 @@ module "mongodb_ecs" {
   mongodb_password            = var.mongodb_password
 }
 
-# module "zeroc_ecs" {
-#   source = "../../modules/zeroc-ecs"
+module "zeroc_ecs" {
+  source = "../../modules/zeroc-ecs"
 
-#   cpu                         = 1024
-#   memory                      = 2048
-#   vpc_id                      = var.vpc_id
-#   cluster_id                = moudle.mongodb_ecs.ecs_cluster_id
-#   image                       = "git-aa7e94562660561a24565f5581396c4fffdf1336"
-#   create_cluster              = false
-#   desired_count               = 1
-#   subnets                     = var.subnets
-# }
+  cpu                         = 2048
+  memory                      = 4096
+  vpc_id                      = var.vpc_id
+  cluster_id                  = module.mongodb_ecs.ecs_cluster_id
+  cluster_name                = var.cluster_name
+  image                       = "git-aa7e94562660561a24565f5581396c4fffdf1336"
+  create_cluster              = false
+  desired_count               = 1
+  subnets                     = var.subnets
+}

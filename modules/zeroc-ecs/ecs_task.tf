@@ -7,7 +7,7 @@ resource "aws_ecs_task_definition" "zeroc_task" {
   execution_role_arn       = aws_iam_role.ecs_task_execution_role.arn
   task_role_arn            = aws_iam_role.ecs_task_execution_role.arn
 
-  container_definitions    = data.template_file.container_definition.rendered
+  container_definitions = data.template_file.container_definition.rendered
 
   volume {
     name = "zeroc_data"
@@ -24,8 +24,11 @@ data "template_file" "container_definition" {
   template = file("${path.module}/container-definitions/zeroc.tpl")
 
   vars = {
-    image  = var.image
-    cpu    = var.cpu
-    memory = var.memory
+    image        = var.image
+    cpu          = var.cpu
+    memory       = var.memory
+    cluster_name = var.cluster_name
+    environment  = var.environment
+    aws_region   = "us-east-2"
   }
 }

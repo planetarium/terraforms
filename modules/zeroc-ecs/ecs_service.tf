@@ -7,6 +7,12 @@ resource "aws_ecs_service" "ecs_service" {
   force_new_deployment = false
   desired_count        = var.desired_count
 
+  load_balancer {
+    target_group_arn = aws_lb_target_group.zeroc_tg.arn
+    container_name   = "zeroc"
+    container_port   = 5009
+  }
+
   network_configuration {
     assign_public_ip = true
     subnets          = var.subnets

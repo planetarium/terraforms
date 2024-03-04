@@ -14,7 +14,7 @@ resource "aws_efs_mount_target" "zeroc_efs_mount_target" {
 }
 
 resource "aws_security_group" "zeroc_efs_sg" {
-  name        = "${var.cluster_name}_zeroc_efs_sg_${var.environment}"
+  name        = "${var.cluster_name}-zeroc-efs-sg-${var.environment}"
   description = "Security group for Zeroc EFS"
   vpc_id      = var.vpc_id
 

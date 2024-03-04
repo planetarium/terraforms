@@ -1,5 +1,5 @@
 resource "aws_security_group" "zeroc_sg" {
-  name        = "${var.cluster_name}_zeroc_sg_${var.environment}"
+  name        = "${var.cluster_name}-zeroc-sg-${var.environment}"
   description = "Allow 0c"
   vpc_id      = var.vpc_id
 
