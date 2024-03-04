@@ -1,20 +1,20 @@
 [
   {
     "name": "mongodb",
-    "image": "docker.io/mongo:latest",
+    "image": "docker.io/planetariumhq/emptychronicle:${image}",
     "cpu": ${cpu},
     "memory": ${memory},
     "essential": true,
     "portMappings": [
       {
-        "containerPort": 27017,
-        "hostPort": 27017,
+        "containerPort": 5009,
+        "hostPort": 5009,
         "protocol": "tcp"
       }
     ],
     "mountPoints": [
       {
-        "sourceVolume": "mongo_data",
+        "sourceVolume": "zeroc_data",
         "containerPath": "/data/db",
         "readOnly": false
       }

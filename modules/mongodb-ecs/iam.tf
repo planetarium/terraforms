@@ -1,5 +1,5 @@
 resource "aws_iam_role" "ecs_task_execution_role" {
-  name = "ecs_task_execution_role"
+  name = "mongodb_ecs_task_execution_role_${var.environment}"
 
   assume_role_policy = jsonencode({
     Version = "2012-10-17"

@@ -16,11 +16,24 @@ terraform {
 module "mongodb_ecs" {
   source = "../../modules/mongodb-ecs"
 
-  cpu                         = 512
-  memory                      = 1024
+  cpu                         = 1024
+  memory                      = 2048
   vpc_id                      = var.vpc_id
-  name                        = "mongodb-ecs-service"
   cluster_name                = var.cluster_name
+  create_cluster              = true
+  desired_count               = 1
+  subnets                     = var.subnets
+}
+
+module "zeroc_ecs" {
+  source = "../../modules/zeroc-ecs"
+
+  cpu                         = 1024
+  memory                      = 2048
+  vpc_id                      = var.vpc_id
+  cluster_i                = moudle.mongodb_ecs.ecs_cluster_id
+  image                       = "git-aa7e94562660561a24565f5581396c4fffdf1336"
+  create_cluster              = false
   desired_count               = 1
   subnets                     = var.subnets
 }

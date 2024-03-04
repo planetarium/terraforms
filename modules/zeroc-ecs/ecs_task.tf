@@ -1,5 +1,5 @@
-resource "aws_ecs_task_definition" "mongo_task" {
-  family                   = "mongo-task"
+resource "aws_ecs_task_definition" "zeroc_task" {
+  family                   = "zeroc-task"
   network_mode             = "awsvpc"
   requires_compatibilities = ["FARGATE"]
   cpu                      = var.cpu
@@ -10,10 +10,10 @@ resource "aws_ecs_task_definition" "mongo_task" {
   container_definitions    = data.template_file.container_definition.rendered
 
   volume {
-    name = "mongo_data"
+    name = "zeroc_data"
 
     efs_volume_configuration {
-      file_system_id     = aws_efs_file_system.mongo_efs.id
+      file_system_id     = aws_efs_file_system.zeroc_efs.id
       root_directory     = "/"
       transit_encryption = "ENABLED"
     }
@@ -21,9 +21,10 @@ resource "aws_ecs_task_definition" "mongo_task" {
 }
 
 data "template_file" "container_definition" {
-  template = file("${path.module}/container-definitions/mongodb.tpl")
+  template = file("${path.module}/container-definitions/zeroc.tpl")
 
   vars = {
+    image  = var.image
     cpu    = var.cpu
     memory = var.memory
   }

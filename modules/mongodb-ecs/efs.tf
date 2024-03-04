@@ -14,7 +14,7 @@ resource "aws_efs_mount_target" "mongo_efs_mount_target" {
 }
 
 resource "aws_security_group" "mongo_efs_sg" {
-  name        = "mongo_efs_sg"
+  name        = "${var.cluster_name}_mongodb_efs_sg_${var.environment}"
   description = "Security group for MongoDB EFS"
   vpc_id      = var.vpc_id
 

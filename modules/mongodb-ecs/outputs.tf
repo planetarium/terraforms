@@ -22,3 +22,8 @@ output "ecs_service_id" {
   description = "The ID of the ECS service"
   value       = aws_ecs_service.ecs_service.id
 }
+
+output "ecs_cluster_id" {
+  description = "The ID of the ECS cluster"
+  value       = aws_ecs_service.ecs_cluster.id
+}

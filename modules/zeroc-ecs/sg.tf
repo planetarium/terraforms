@@ -1,6 +1,6 @@
-resource "aws_security_group" "mongo_sg" {
-  name        = "mongo_sg"
-  description = "Allow MongoDB"
+resource "aws_security_group" "zeroc_sg" {
+  name        = "${var.cluster_name}_zeroc_sg_${var.environment}"
+  description = "Allow 0c"
   vpc_id      = var.vpc_id
 
   ingress {
