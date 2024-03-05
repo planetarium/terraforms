@@ -8,17 +8,12 @@ output "zeroc_security_group_id" {
   value       = aws_security_group.zeroc_sg.id
 }
 
-output "efs_file_system_id" {
-  description = "The ID of the EFS file system created for Zeroc"
-  value       = aws_efs_file_system.zeroc_efs.id
-}
-
 output "ecs_service_name" {
   description = "The name of the ECS service"
-  value       = aws_ecs_service.ecs_service.name
+  value       = aws_ecs_service.zeroc_service.name
 }
 
 output "ecs_service_id" {
   description = "The ID of the ECS service"
-  value       = aws_ecs_service.ecs_service.id
+  value       = aws_ecs_service.zeroc_service.id
 }

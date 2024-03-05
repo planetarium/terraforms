@@ -35,7 +35,7 @@ module "zeroc_ecs" {
   vpc_id                      = var.vpc_id
   cluster_id                  = module.mongodb_ecs.ecs_cluster_id
   cluster_name                = var.cluster_name
-  image                       = "git-aa7e94562660561a24565f5581396c4fffdf1336"
+  image                       = "git-bfe575470f0bd5245eed628eaca6b6a11fd99df5"
   create_cluster              = false
   desired_count               = 1
   subnets                     = var.subnets

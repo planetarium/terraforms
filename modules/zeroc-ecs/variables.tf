@@ -1,3 +1,9 @@
+variable "instance_type" {
+  description = "The instance type"
+  type        = string
+  default     = "t3.large"
+}
+
 variable "cpu" {
   description = "The number of CPU units used by the task"
   type        = number
@@ -9,7 +15,6 @@ variable "memory" {
   type        = number
   default     = 512
 }
-
 variable "image" {
   description = "Docker Image tag"
   type        = string

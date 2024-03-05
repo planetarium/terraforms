@@ -26,13 +26,6 @@
         "awslogs-region": "${aws_region}",
         "awslogs-stream-prefix": "ecs"
       }
-    },
-    "mountPoints": [
-      {
-        "sourceVolume": "zeroc_data",
-        "containerPath": "/data",
-        "readOnly": false
-      }
-    ]
+    }
   }
 ]

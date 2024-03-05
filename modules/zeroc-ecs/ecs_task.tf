@@ -1,23 +1,18 @@
 resource "aws_ecs_task_definition" "zeroc_task" {
   family                   = "zeroc-task"
   network_mode             = "awsvpc"
-  requires_compatibilities = ["FARGATE"]
+  requires_compatibilities = ["EC2"]
   cpu                      = var.cpu
   memory                   = var.memory
   execution_role_arn       = aws_iam_role.ecs_task_execution_role.arn
   task_role_arn            = aws_iam_role.ecs_task_execution_role.arn
 
-  container_definitions = data.template_file.container_definition.rendered
-
-  volume {
-    name = "zeroc_data"
-
-    efs_volume_configuration {
-      file_system_id     = aws_efs_file_system.zeroc_efs.id
-      root_directory     = "/"
-      transit_encryption = "ENABLED"
-    }
+  runtime_platform {
+    operating_system_family = "LINUX"
+    cpu_architecture        = "X86_64"
   }
+
+  container_definitions = data.template_file.container_definition.rendered
 }
 
 data "template_file" "container_definition" {
