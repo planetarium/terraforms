@@ -5,6 +5,8 @@ resource "aws_lb" "zeroc_alb" {
   subnets                    = var.subnets
   enable_deletion_protection = false
 
+  security_groups = [aws_security_group.zeroc_alb_sg.id]
+
   tags = {
     Name = "zeroc-alb"
   }

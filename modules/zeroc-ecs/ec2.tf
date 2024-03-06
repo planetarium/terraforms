@@ -1,14 +1,16 @@
 resource "aws_launch_template" "zeroc_lt" {
-  name_prefix   = "zeroc-template"
+  name_prefix   = "${var.cluster_name}-zeroc-ecs-instance-"
   image_id      = data.aws_ssm_parameter.ecs_ami.value
   instance_type = var.instance_type
 
   key_name               = aws_key_pair.key_pair.key_name
-  vpc_security_group_ids = [aws_security_group.zeroc_sg.id]
+  vpc_security_group_ids = [aws_security_group.zeroc_ecs_instances_sg.id]
 
   iam_instance_profile {
-    name = "ecsInstanceRole"
+    arn = aws_iam_instance_profile.ecs_instance_profile.arn
   }
+
+  monitoring { enabled = true }
 
   block_device_mappings {
     device_name = "/dev/xvda"
@@ -25,18 +27,31 @@ resource "aws_launch_template" "zeroc_lt" {
     }
   }
 
-  user_data = base64encode(templatefile("${path.module}/user-data/user_data.sh", { ecs_cluster_name = var.cluster_name }))
+  user_data = base64encode(<<-EOF
+      #!/bin/bash
+      echo ECS_CLUSTER=${var.cluster_name} >> /etc/ecs/ecs.config;
+    EOF
+  )
 }
 
 resource "aws_autoscaling_group" "zeroc_asg" {
-  vpc_zone_identifier = var.subnets
-  desired_capacity    = 1
-  max_size            = 2
-  min_size            = 1
+  name_prefix               = "${var.cluster_name}-zeroc-ecs-instance-"
+  vpc_zone_identifier       = var.subnets
+  max_size                  = 1
+  min_size                  = 1
+  health_check_grace_period = 0
+  health_check_type         = "EC2"
+  protect_from_scale_in     = false
 
   launch_template {
     id      = aws_launch_template.zeroc_lt.id
     version = "$Latest"
+  }
+
+  tag {
+    key                 = "Name"
+    value               = "${var.cluster_name}-zeroc-asg"
+    propagate_at_launch = true
   }
 
   tag {
@@ -55,6 +70,6 @@ resource "tls_private_key" "private_key" {
 }
 
 resource "aws_key_pair" "key_pair" {
-  key_name   = "${var.cluster_name}-zeroc-template"
+  key_name   = "${var.cluster_name}-zeroc-key"
   public_key = tls_private_key.private_key.public_key_openssh
 }

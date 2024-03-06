@@ -33,7 +33,7 @@ resource "aws_iam_policy" "ecs_logs_policy" {
           "logs:PutLogEvents"
         ],
         Resource = "arn:aws:logs:*:*:*",
-        Effect = "Allow"
+        Effect   = "Allow"
       }
     ]
   })
@@ -66,5 +66,6 @@ resource "aws_iam_role_policy_attachment" "ecs_instance_role_attachment" {
 
 resource "aws_iam_instance_profile" "ecs_instance_profile" {
   name = "ecs-instance-profile-${var.environment}"
+  path = "/ecs/instance/"
   role = aws_iam_role.ecs_instance_role.name
 }

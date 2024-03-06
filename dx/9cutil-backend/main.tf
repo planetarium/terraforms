@@ -18,11 +18,11 @@ module "mongodb_ecs" {
 
   cpu                         = 1024
   memory                      = 2048
-  vpc_id                      = var.vpc_id
+  vpc_id                      = aws_vpc.main.id
   cluster_name                = var.cluster_name
   create_cluster              = true
   desired_count               = 1
-  subnets                     = var.subnets
+  subnets                     = aws_subnet.public[*].id
   mongodb_username            = var.mongodb_username
   mongodb_password            = var.mongodb_password
 }
@@ -30,13 +30,13 @@ module "mongodb_ecs" {
 module "zeroc_ecs" {
   source = "../../modules/zeroc-ecs"
 
-  cpu                         = 2048
-  memory                      = 4096
-  vpc_id                      = var.vpc_id
+  cpu                         = 1024
+  memory                      = 2048
+  vpc_id                      = aws_vpc.main.id
   cluster_id                  = module.mongodb_ecs.ecs_cluster_id
   cluster_name                = var.cluster_name
   image                       = "git-bfe575470f0bd5245eed628eaca6b6a11fd99df5"
   create_cluster              = false
   desired_count               = 1
-  subnets                     = var.subnets
+  subnets                     = aws_subnet.public[*].id
 }
