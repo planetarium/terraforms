@@ -30,13 +30,13 @@ module "mongodb_ecs" {
 module "zeroc_ecs" {
   source = "../../modules/zeroc-ecs"
 
-  cpu            = 3072
+  cpu            = 2048
   memory         = 4096
   vpc_id         = aws_vpc.main.id
   cluster_id     = module.mongodb_ecs.ecs_cluster_id
   cluster_name   = var.cluster_name
-  image          = "latest"
-  instance_type  = "c7g.xlarge"
+  image          = "git-475c5b93acd39818796f8aa7ed1cf978626c5b55"
+  instance_type  = "c7g.large"
   create_cluster = false
   desired_count  = 1
   subnets        = aws_subnet.private[*].id

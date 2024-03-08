@@ -1,10 +1,10 @@
-resource "aws_launch_template" "zeroc_lt" {
+resource "aws_launch_template" "lt" {
   name_prefix   = "${var.cluster_name}-zeroc-ecs-instance-"
   image_id      = data.aws_ssm_parameter.ecs_ami.value
   instance_type = var.instance_type
 
   key_name               = aws_key_pair.key_pair.key_name
-  vpc_security_group_ids = [aws_security_group.zeroc_ecs_instances_sg.id]
+  vpc_security_group_ids = [aws_security_group.sg.id]
 
   iam_instance_profile {
     arn = aws_iam_instance_profile.ecs_instance_profile.arn
@@ -17,7 +17,6 @@ resource "aws_launch_template" "zeroc_lt" {
     ebs {
       volume_size           = 50
       volume_type           = "gp3"
-      delete_on_termination = false
     }
   }
 
@@ -38,7 +37,7 @@ resource "aws_launch_template" "zeroc_lt" {
   )
 }
 
-resource "aws_autoscaling_group" "zeroc_asg" {
+resource "aws_autoscaling_group" "asg" {
   name_prefix               = "${var.cluster_name}-zeroc-ecs-instance-"
   vpc_zone_identifier       = var.subnets
   max_size                  = 1
@@ -48,7 +47,7 @@ resource "aws_autoscaling_group" "zeroc_asg" {
   protect_from_scale_in     = false
 
   launch_template {
-    id      = aws_launch_template.zeroc_lt.id
+    id      = aws_launch_template.lt.id
     version = "$Latest"
   }
 
@@ -66,7 +65,7 @@ resource "aws_autoscaling_group" "zeroc_asg" {
 }
 
 data "aws_ssm_parameter" "ecs_ami" {
-  name = "/aws/service/ecs/optimized-ami/amazon-linux-2/recommended/image_id"
+  name = "/aws/service/ecs/optimized-ami/amazon-linux-2/arm64/recommended/image_id"
 }
 
 resource "tls_private_key" "private_key" {

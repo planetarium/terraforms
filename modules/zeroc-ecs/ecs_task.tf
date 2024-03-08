@@ -1,4 +1,4 @@
-resource "aws_ecs_task_definition" "zeroc_task" {
+resource "aws_ecs_task_definition" "ecs_task" {
   family                   = "zeroc-task"
   network_mode             = "awsvpc"
   requires_compatibilities = ["EC2"]
@@ -9,12 +9,12 @@ resource "aws_ecs_task_definition" "zeroc_task" {
 
   runtime_platform {
     operating_system_family = "LINUX"
-    cpu_architecture        = "X86_64"
+    cpu_architecture        = "ARM64"
   }
 
   volume {
-    name = "zeroc-volume"
-    host_path = "/data"
+    name = "chain-volume"
+    host_path = "/zeroc-chain"
   }
 
   container_definitions = data.template_file.container_definition.rendered
