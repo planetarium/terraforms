@@ -14,7 +14,7 @@ resource "aws_lb" "zeroc_alb" {
 
 resource "aws_lb_target_group" "zeroc_tg" {
   name     = "${var.cluster_name}-zeroc-tg-${var.environment}"
-  port     = 5009
+  port     = 80
   protocol = "HTTP"
   vpc_id   = var.vpc_id
   target_type = "ip"

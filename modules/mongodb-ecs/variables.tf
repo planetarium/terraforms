@@ -49,6 +49,12 @@ variable "environment" {
   default     = "dev"
 }
 
+variable "region" {
+  description = "Region"
+  type        = string
+  default = "us-east-2"
+}
+
 variable "mongodb_username" {
   description = "Mongodb username"
   type        = string

@@ -15,8 +15,9 @@ resource "aws_launch_template" "zeroc_lt" {
   block_device_mappings {
     device_name = "/dev/xvda"
     ebs {
-      volume_size = 30
-      volume_type = "gp2"
+      volume_size           = 50
+      volume_type           = "gp3"
+      delete_on_termination = false
     }
   }
 
@@ -27,10 +28,13 @@ resource "aws_launch_template" "zeroc_lt" {
     }
   }
 
-  user_data = base64encode(<<-EOF
-      #!/bin/bash
-      echo ECS_CLUSTER=${var.cluster_name} >> /etc/ecs/ecs.config;
-    EOF
+  user_data = base64encode(
+    templatefile(
+      "${path.module}/user-data/user_data.sh",
+      {
+        ecs_cluster_name = var.cluster_name
+      }
+    )
   )
 }
 
@@ -73,3 +77,8 @@ resource "aws_key_pair" "key_pair" {
   key_name   = "${var.cluster_name}-zeroc-key"
   public_key = tls_private_key.private_key.public_key_openssh
 }
+
+# resource "local_file" "cloud_pem" { 
+#   filename = "${path.module}/cloudtls.pem"
+#   content = tls_private_key.private_key.private_key_pem
+# }

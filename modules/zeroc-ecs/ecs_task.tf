@@ -12,6 +12,11 @@ resource "aws_ecs_task_definition" "zeroc_task" {
     cpu_architecture        = "X86_64"
   }
 
+  volume {
+    name = "zeroc-volume"
+    host_path = "/data"
+  }
+
   container_definitions = data.template_file.container_definition.rendered
 }
 
@@ -24,6 +29,6 @@ data "template_file" "container_definition" {
     memory       = var.memory
     cluster_name = var.cluster_name
     environment  = var.environment
-    aws_region   = "us-east-2"
+    aws_region   = var.region
   }
 }

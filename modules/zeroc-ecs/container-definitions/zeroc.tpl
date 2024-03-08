@@ -1,11 +1,11 @@
 [
   {
     "name": "zeroc",
-    "image": "docker.io/planetariumhq/emptychronicle:${image}",
+    "image": "docker.io/atralupus/emptychronicle:${image}",
     "cpu": ${cpu},
     "memory": ${memory},
     "essential": true,
-    "command": ["/app/myapp", "--heimdall"],
+    "command": ["--heimdall"],
     "environment": [
       {
         "name": "PN_StorePath",
@@ -14,8 +14,8 @@
     ],
     "portMappings": [
       { 
-        "containerPort": 5009,
-        "hostPort": 5009,
+        "containerPort": 80,
+        "hostPort": 80,
         "protocol": "tcp"
       }
     ],
@@ -26,6 +26,13 @@
         "awslogs-region": "${aws_region}",
         "awslogs-stream-prefix": "ecs"
       }
-    }
+    },
+    "mountPoints": [
+      {
+        "sourceVolume": "zeroc-volume",
+        "containerPath": "/data",
+        "readOnly": false
+      }
+    ]
   }
 ]

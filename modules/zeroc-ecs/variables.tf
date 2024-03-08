@@ -1,7 +1,7 @@
 variable "instance_type" {
   description = "The instance type"
   type        = string
-  default     = "t3.medium"
+  default     = "t3.large"
 }
 
 variable "cpu" {
@@ -15,6 +15,7 @@ variable "memory" {
   type        = number
   default     = 512
 }
+
 variable "image" {
   description = "Docker Image tag"
   type        = string
@@ -24,6 +25,12 @@ variable "image" {
 variable "vpc_id" {
   description = "The VPC ID where the security group will be created"
   type        = string
+}
+
+variable "region" {
+  description = "Region"
+  type        = string
+  default = "us-east-2"
 }
 
 variable "cluster_name" {

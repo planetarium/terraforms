@@ -5,10 +5,12 @@ resource "aws_ecs_service" "zeroc_service" {
   task_definition      = aws_ecs_task_definition.zeroc_task.arn
   desired_count        = var.desired_count
 
+  health_check_grace_period_seconds = 300
+
   load_balancer {
     target_group_arn = aws_lb_target_group.zeroc_tg.arn
     container_name   = "zeroc"
-    container_port   = 5009
+    container_port   = 80
   }
 
   network_configuration {
