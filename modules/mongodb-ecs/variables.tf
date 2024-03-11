@@ -54,13 +54,3 @@ variable "region" {
   type        = string
   default = "us-east-2"
 }
-
-variable "mongodb_username" {
-  description = "Mongodb username"
-  type        = string
-}
-
-variable "mongodb_password" {
-  description = "Mongodb password"
-  type        = string
-}

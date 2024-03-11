@@ -1,9 +1,3 @@
-variable "instance_type" {
-  description = "The instance type"
-  type        = string
-  default     = "t3.large"
-}
-
 variable "cpu" {
   description = "The number of CPU units used by the task"
   type        = number
@@ -56,13 +50,8 @@ variable "desired_count" {
   type        = number
 }
 
-variable "subnets" {
-  description = "The list of subnet IDs for the task or service"
-  type        = list(string)
-}
-
 variable "public_subnets" {
-  description = "The list of public subnet IDs for the task or service"
+  description = "The list of subnet IDs for the task or service"
   type        = list(string)
 }
 
