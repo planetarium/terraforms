@@ -5,18 +5,18 @@
     "cpu": ${cpu},
     "memory": ${memory},
     "essential": true,
-    "environment": [
+    "secrets": [
       {
-        "name": "Configuration__EmptyChronicleBaseUrl",
-        "value": "${emptychronicle_base_url}"
+        "name": "STORE_Configuration__EmptyChronicleBaseUrl",
+        "valueFrom": "${emptychronicle_base_url}"
       },
       {
-        "name": "Configuration__MongoDbConnectionString",
-        "value": "${mongodb_db_connection_string}"
+        "name": "STORE_Configuration__MongoDbConnectionString",
+        "valueFrom": "${mongodb_db_connection_string}"
       },
       {
-        "name": "Configuration__DatabaseName",
-        "value": "${mongodb_dbname}"
+        "name": "STORE_Configuration__DatabaseName",
+        "valueFrom": "${mongodb_dbname}"
       }
     ],
     "logConfiguration": {

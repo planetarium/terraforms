@@ -5,26 +5,26 @@
     "cpu": ${cpu},
     "memory": ${memory},
     "essential": true,
-    "environment": [
+    "secrets": [
       {
         "name": "Database__ConnectionString",
-        "value": "${mongodb_connection_string}"
+        "valueFrom": "${mongodb_connection_string}"
       },
       {
         "name": "Database__DatabaseName",
-        "value": "${mongodb_dbname}"
+        "valueFrom": "${mongodb_dbname}"
       },
       {
         "name": "StateService__HeadlessEndpoint",
-        "value": "${jwt_headless_endpoint}"
+        "valueFrom": "${jwt_headless_endpoint}"
       },
       {
         "name": "StateService__JwtSecretKey",
-        "value": "${jwt_secret_key}"
+        "valueFrom": "${jwt_secret_key}"
       },
       {
         "name": "StateService__JwtIssuer",
-        "value": "${jwt_issuer}"
+        "valueFrom": "${jwt_issuer}"
       }
     ],
     "portMappings": [
