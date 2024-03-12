@@ -1,5 +1,5 @@
 resource "aws_security_group" "sg" {
-  name        = "${var.cluster_name}-zeroc-alb-sg-${var.environment}"
+  name        = "${local.kebab_case_prefix}-ecs-alb-sg"
   description = "Security group for zeroc"
   vpc_id      = var.vpc_id
 
@@ -18,6 +18,6 @@ resource "aws_security_group" "sg" {
   }
 
   tags = {
-    Name = "zeroc-sg-${var.environment}"
+    Name = "${local.kebab_case_prefix}-ecs-sg"
   }
 }

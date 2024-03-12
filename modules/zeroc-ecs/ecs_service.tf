@@ -1,6 +1,6 @@
 resource "aws_ecs_service" "ecs_service" {
-  name    = "${var.cluster_name}-ecs-service-zeroc-${var.environment}"
-  cluster = var.create_cluster ? aws_ecs_cluster.ecs_cluster[0].id : var.cluster_id
+  name    = "${local.kebab_case_prefix}-ecs-service"
+  cluster = var.cluster_id
 
   task_definition      = aws_ecs_task_definition.ecs_task.arn
   desired_count        = var.desired_count
@@ -14,7 +14,7 @@ resource "aws_ecs_service" "ecs_service" {
 
   load_balancer {
     target_group_arn = aws_lb_target_group.tg.arn
-    container_name   = "zeroc"
+    container_name   = var.service_name
     container_port   = 80
   }
 

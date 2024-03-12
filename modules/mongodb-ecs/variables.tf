@@ -27,18 +27,12 @@ variable "cluster_id" {
   default     = ""
 }
 
-variable "create_cluster" {
-  description = "A boolean flag to control whether the ECS cluster should be created"
-  type        = bool
-  default     = false
-}
-
 variable "desired_count" {
   description = "The number of instances of the task definition to place and keep running"
   type        = number
 }
 
-variable "subnets" {
+variable "public_subnets" {
   description = "The list of subnet IDs for the task or service"
   type        = list(string)
 }
@@ -53,4 +47,14 @@ variable "region" {
   description = "Region"
   type        = string
   default = "us-east-2"
+}
+
+variable "service_name" {
+  type        = string
+  description = "Service name"
+  default     = "mongodb"
+}
+
+locals {
+  kebab_case_prefix = "${var.cluster_name}-${var.service_name}-${var.environment}"
 }

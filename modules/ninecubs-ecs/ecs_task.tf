@@ -14,14 +14,14 @@ data "template_file" "container_definition" {
   template = file("${path.module}/container-definitions/ninec_ubs.tpl")
 
   vars = {
-    image        = var.image
-    cpu          = var.cpu
-    memory       = var.memory
-    cluster_name = var.cluster_name
-    environment  = var.environment
-    aws_region   = var.region
-    emptychronicle_base_url = "${aws_secretsmanager_secret.secret.arn}:emptychronicle_base_url::"
+    image                        = var.image_tag
+    cpu                          = var.cpu
+    memory                       = var.memory
+    container_name               = var.service_name
+    log_group_name               = aws_cloudwatch_log_group.log_group.name
+    aws_region                   = var.region
+    emptychronicle_base_url      = "${aws_secretsmanager_secret.secret.arn}:emptychronicle_base_url::"
     mongodb_db_connection_string = "${aws_secretsmanager_secret.secret.arn}:mongodb_db_connection_string::"
-    mongodb_dbname = "${aws_secretsmanager_secret.secret.arn}:mongodb_dbname::"
+    mongodb_dbname               = "${aws_secretsmanager_secret.secret.arn}:mongodb_dbname::"
   }
 }

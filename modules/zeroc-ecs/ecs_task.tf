@@ -13,8 +13,8 @@ resource "aws_ecs_task_definition" "ecs_task" {
   }
 
   volume {
-    name = "chain-volume"
-    host_path = "/zeroc-chain"
+    name      = "${var.service_name}-volume"
+    host_path = "/${var.service_name}-chain"
   }
 
   container_definitions = data.template_file.container_definition.rendered
@@ -24,11 +24,13 @@ data "template_file" "container_definition" {
   template = file("${path.module}/container-definitions/zeroc.tpl")
 
   vars = {
-    image        = var.image
-    cpu          = var.cpu
-    memory       = var.memory
-    cluster_name = var.cluster_name
-    environment  = var.environment
-    aws_region   = var.region
+    image          = var.image_tag
+    cpu            = var.cpu
+    memory         = var.memory
+    container_name = var.service_name
+    cluster_name   = var.cluster_name
+    log_group_name = aws_cloudwatch_log_group.log_group.name
+    environment    = var.environment
+    aws_region     = var.region
   }
 }

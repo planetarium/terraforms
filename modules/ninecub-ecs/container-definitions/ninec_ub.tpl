@@ -1,6 +1,6 @@
 [
   {
-    "name": "ninecub",
+    "name": "${container_name}",
     "image": "docker.io/planetariumhq/9cutil-backend:${image}",
     "cpu": ${cpu},
     "memory": ${memory},
@@ -37,7 +37,7 @@
     "logConfiguration": {
       "logDriver": "awslogs",
       "options": {
-        "awslogs-group": "/ecs/${cluster_name}-ninecub-${environment}",
+        "awslogs-group": "${log_group_name}",
         "awslogs-region": "${aws_region}",
         "awslogs-stream-prefix": "ecs"
       }

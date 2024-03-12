@@ -1,6 +1,6 @@
 [
   {
-    "name": "zeroc",
+    "name": "${container_name}",
     "image": "docker.io/planetariumhq/emptychronicle:${image}",
     "cpu": ${cpu},
     "memory": ${memory},
@@ -106,15 +106,15 @@
     "logConfiguration": {
       "logDriver": "awslogs",
       "options": {
-        "awslogs-group": "/ecs/${cluster_name}-zeroc-${environment}",
+        "awslogs-group": "${log_group_name}",
         "awslogs-region": "${aws_region}",
         "awslogs-stream-prefix": "ecs"
       }
     },
     "mountPoints": [
       {
-        "sourceVolume": "chain-volume",
-        "containerPath": "/zeroc-chain",
+        "sourceVolume": "${container_name}-volume",
+        "containerPath": "/${container_name}-chain",
         "readOnly": false
       }
     ]

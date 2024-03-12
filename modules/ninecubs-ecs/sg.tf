@@ -1,5 +1,5 @@
 resource "aws_security_group" "sg" {
-  name        = "${var.cluster_name}-ninecubs-sg-${var.environment}"
+  name        = "${local.kebab_case_prefix}-ecs-sg"
   description = "Security group for ninecubs"
   vpc_id      = var.vpc_id
 
@@ -11,6 +11,6 @@ resource "aws_security_group" "sg" {
   }
 
   tags = {
-    Name = "ninecubs-sg-${var.environment}"
+    Name = "${local.kebab_case_prefix}-ecs-sg"
   }
 }

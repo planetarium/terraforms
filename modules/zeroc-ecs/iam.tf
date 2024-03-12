@@ -1,5 +1,5 @@
 resource "aws_iam_role" "ecs_task_execution_role" {
-  name = "zeroc-ecs-task-execution-role-${var.environment}"
+  name = "${local.kebab_case_prefix}-ecs-task-execution-role"
 
   assume_role_policy = jsonencode({
     Version = "2012-10-17"
@@ -21,7 +21,7 @@ resource "aws_iam_role_policy_attachment" "ecs_task_execution_role_policy" {
 }
 
 resource "aws_iam_policy" "ecs_logs_policy" {
-  name        = "ecs-logs-policy-${var.environment}"
+  name        = "${local.kebab_case_prefix}-ecs-logs-policy"
   description = "Allow ECS tasks to push logs to CloudWatch"
 
   policy = jsonencode({
@@ -45,7 +45,7 @@ resource "aws_iam_role_policy_attachment" "ecs_logs_policy_attachment" {
 }
 
 resource "aws_iam_role" "ecs_instance_role" {
-  name = "ecs-instance-role-${var.environment}"
+  name = "${local.kebab_case_prefix}-ecs-instance-role"
 
   assume_role_policy = jsonencode({
     Version = "2012-10-17",
@@ -65,7 +65,7 @@ resource "aws_iam_role_policy_attachment" "ecs_instance_role_attachment" {
 }
 
 resource "aws_iam_instance_profile" "ecs_instance_profile" {
-  name = "ecs-instance-profile-${var.environment}"
+  name = "${local.kebab_case_prefix}-ecs-instance-profile"
   path = "/ecs/instance/"
   role = aws_iam_role.ecs_instance_role.name
 }

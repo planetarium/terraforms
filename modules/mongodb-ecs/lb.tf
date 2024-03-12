@@ -1,17 +1,17 @@
-resource "aws_lb" "mongo_nlb" {
-  name                       = "${var.cluster_name}-mongo-nlb-${var.environment}"
+resource "aws_lb" "nlb" {
+  name                       = "${local.kebab_case_prefix}-ecs-nlb"
   internal                   = false
   load_balancer_type         = "network"
-  subnets                    = var.subnets
+  subnets                    = var.public_subnets
   enable_deletion_protection = false
 
   tags = {
-    Name = "mongo-nlb"
+    Name = "${local.kebab_case_prefix}-ecs-nlb"
   }
 }
 
-resource "aws_lb_target_group" "mongo_tg" {
-  name     = "${var.cluster_name}-mongo-tg-${var.environment}"
+resource "aws_lb_target_group" "tg" {
+  name     = "${local.kebab_case_prefix}-ecs-tg"
   port     = 27017
   protocol = "TCP"
   vpc_id   = var.vpc_id
@@ -19,13 +19,13 @@ resource "aws_lb_target_group" "mongo_tg" {
 
 }
 
-resource "aws_lb_listener" "mongo_lb_listener" {
-  load_balancer_arn = aws_lb.mongo_nlb.arn
+resource "aws_lb_listener" "lb_listener" {
+  load_balancer_arn = aws_lb.nlb.arn
   port              = 27017
   protocol          = "TCP"
 
   default_action {
     type             = "forward"
-    target_group_arn = aws_lb_target_group.mongo_tg.arn
+    target_group_arn = aws_lb_target_group.tg.arn
   }
 }

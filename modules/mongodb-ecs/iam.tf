@@ -1,5 +1,5 @@
 resource "aws_iam_role" "ecs_task_execution_role" {
-  name = "mongodb_ecs_task_execution_role_${var.environment}"
+  name = "${local.kebab_case_prefix}-ecs-task-execution-role"
 
   assume_role_policy = jsonencode({
     Version = "2012-10-17"
@@ -21,7 +21,7 @@ resource "aws_iam_role_policy_attachment" "ecs_task_execution_role_policy" {
 }
 
 resource "aws_iam_policy" "secret_read_policy" {
-  name        = "secret-read-policy"
+  name        = "${local.kebab_case_prefix}-ecs-secret-read-policy"
   description = "A policy that allows ECS tasks to read secrets from AWS Secret Manager."
   policy = jsonencode({
     Version = "2012-10-17",

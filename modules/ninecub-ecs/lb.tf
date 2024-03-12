@@ -1,5 +1,5 @@
 resource "aws_lb" "alb" {
-  name                       = "${var.cluster_name}-9cub-alb-${var.environment}"
+  name                       = "${local.kebab_case_prefix}-ecs-alb"
   internal                   = false
   load_balancer_type         = "application"
   subnets                    = var.public_subnets
@@ -8,12 +8,12 @@ resource "aws_lb" "alb" {
   security_groups = [aws_security_group.alb_sg.id]
 
   tags = {
-    Name = "ninecub-alb"
+    Name = "${local.kebab_case_prefix}-ecs-alb"
   }
 }
 
 resource "aws_lb_target_group" "tg" {
-  name        = "${var.cluster_name}-ninecub-tg-${var.environment}"
+  name        = "${local.kebab_case_prefix}-ecs-tg"
   port        = 8080
   protocol    = "HTTP"
   vpc_id      = var.vpc_id

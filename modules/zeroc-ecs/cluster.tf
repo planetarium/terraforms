@@ -1,9 +1,5 @@
-resource "aws_ecs_cluster" "ecs_cluster" {
-  count = var.create_cluster ? 1 : 0
-  name  = var.cluster_name
-}
 resource "aws_ecs_capacity_provider" "ecs_capacity_provider" {
-  name = "${var.cluster_name}-ecs-capacity-provider-zeroc-${var.environment}"
+  name = "${local.kebab_case_prefix}-ecs-capacity-provider"
 
   auto_scaling_group_provider {
     auto_scaling_group_arn = aws_autoscaling_group.asg.arn

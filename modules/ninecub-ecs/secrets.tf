@@ -1,4 +1,4 @@
 resource "aws_secretsmanager_secret" "secret" {
-  name        = "${var.cluster_name}-ninecub/credentials"
+  name        = "${local.kebab_case_prefix}/credentials"
   description = "NineChroniclesUtilBackend credentials"
 }

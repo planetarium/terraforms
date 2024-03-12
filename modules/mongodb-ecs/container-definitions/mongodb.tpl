@@ -1,6 +1,6 @@
 [
   {
-    "name": "mongodb",
+    "name": "${container_name}",
     "image": "docker.io/mongo:latest",
     "cpu": ${cpu},
     "memory": ${memory},

@@ -8,7 +8,7 @@ terraform {
 
   backend "s3" {
     bucket = "9c-tfstates.planetarium.dev"
-    key    = "9cutilbackend/mongodb"
+    key    = "9cutilbackend/dx"
     region = "ap-northeast-2"
   }
 }
@@ -19,10 +19,9 @@ module "mongodb_ecs" {
   cpu            = 1024
   memory         = 2048
   vpc_id         = aws_vpc.main.id
-  cluster_name   = var.cluster_name
-  create_cluster = true
+  cluster_id     = aws_ecs_cluster.ecs_cluster.id
   desired_count  = 1
-  subnets        = aws_subnet.public[*].id
+  public_subnets        = aws_subnet.public[*].id
 }
 
 module "zeroc_ecs" {
@@ -31,40 +30,34 @@ module "zeroc_ecs" {
   cpu            = 4096
   memory         = 31000
   vpc_id         = aws_vpc.main.id
-  cluster_id     = module.mongodb_ecs.ecs_cluster_id
-  cluster_name   = var.cluster_name
-  image          = "git-475c5b93acd39818796f8aa7ed1cf978626c5b55"
+  cluster_id     = aws_ecs_cluster.ecs_cluster.id
+  image_tag          = var.zeroc_image
   instance_type  = "r7g.xlarge"
-  create_cluster = false
   desired_count  = 1
   subnets        = aws_subnet.private[*].id
   public_subnets = aws_subnet.public[*].id
 }
 
 module "ninec_utilbackend_ecs" {
-  source = "../../modules/ninec-ub-ecs"
+  source = "../../modules/ninecub-ecs"
 
   cpu            = 1024
   memory         = 2048
   vpc_id         = aws_vpc.main.id
-  cluster_id     = module.mongodb_ecs.ecs_cluster_id
-  cluster_name   = var.cluster_name
-  image          = "git-d11a2d3f38e3f28d9bfb4f31274ae5b2616fb09e"
-  create_cluster = false
+  cluster_id     = aws_ecs_cluster.ecs_cluster.id
+  image_tag          = var.ninecub_image
   desired_count  = 1
   public_subnets = aws_subnet.public[*].id
 }
 
 module "ninec_utilbackend_store_ecs" {
-  source = "../../modules/ninec-ubs-ecs"
+  source = "../../modules/ninecubs-ecs"
 
   cpu            = 1024
   memory         = 2048
   vpc_id         = aws_vpc.main.id
-  cluster_id     = module.mongodb_ecs.ecs_cluster_id
-  cluster_name   = var.cluster_name
-  image          = "git-e09438e885052a63a52ced8db1b898ed7f123eb9"
-  create_cluster = false
+  cluster_id     = aws_ecs_cluster.ecs_cluster.id
+  image_tag          = var.ninecubs_image
   desired_count  = 1
   public_subnets = aws_subnet.public[*].id
 }

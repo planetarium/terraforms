@@ -1,5 +1,5 @@
 resource "aws_security_group" "alb_sg" {
-  name        = "${var.cluster_name}-ninecub-alb-sg-${var.environment}"
+  name        = "${local.kebab_case_prefix}-ecs-alb-sg"
   description = "Security group for ninecub"
   vpc_id      = var.vpc_id
 
@@ -18,12 +18,12 @@ resource "aws_security_group" "alb_sg" {
   }
 
   tags = {
-    Name = "ninecub-sg-${var.environment}"
+    Name = "${local.kebab_case_prefix}-ecs-sg"
   }
 }
 
 resource "aws_security_group" "service_sg" {
-  name        = "${var.cluster_name}-ninecub-service-sg-${var.environment}"
+  name        = "${local.kebab_case_prefix}-ecs-service-sg"
   description = "Security group for ninecub"
   vpc_id      = var.vpc_id
 
@@ -42,6 +42,6 @@ resource "aws_security_group" "service_sg" {
   }
 
   tags = {
-    Name = "ninecub-service-sg-${var.environment}"
+    Name = "${local.kebab_case_prefix}-ecs-service-sg"
   }
 }

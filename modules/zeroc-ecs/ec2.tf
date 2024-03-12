@@ -1,5 +1,5 @@
 resource "aws_launch_template" "lt" {
-  name_prefix   = "${var.cluster_name}-zeroc-ecs-instance-"
+  name_prefix   = "${local.kebab_case_prefix}-ecs-instance-"
   image_id      = data.aws_ssm_parameter.ecs_ami.value
   instance_type = var.instance_type
 
@@ -23,7 +23,7 @@ resource "aws_launch_template" "lt" {
   tag_specifications {
     resource_type = "instance"
     tags = {
-      Name = "${var.cluster_name}-zeroc-ecs-instance"
+      Name = "${local.kebab_case_prefix}-ecs-instance"
     }
   }
 
@@ -38,7 +38,7 @@ resource "aws_launch_template" "lt" {
 }
 
 resource "aws_autoscaling_group" "asg" {
-  name_prefix               = "${var.cluster_name}-zeroc-ecs-instance-"
+  name_prefix               = "${local.kebab_case_prefix}-ecs-instance-"
   vpc_zone_identifier       = var.subnets
   max_size                  = 1
   min_size                  = 1
@@ -53,7 +53,7 @@ resource "aws_autoscaling_group" "asg" {
 
   tag {
     key                 = "Name"
-    value               = "${var.cluster_name}-zeroc-asg"
+    value               = "${local.kebab_case_prefix}-ecs-asg"
     propagate_at_launch = true
   }
 
@@ -73,7 +73,7 @@ resource "tls_private_key" "private_key" {
 }
 
 resource "aws_key_pair" "key_pair" {
-  key_name   = "${var.cluster_name}-zeroc-key"
+  key_name   = "${local.kebab_case_prefix}-ecs-key"
   public_key = tls_private_key.private_key.public_key_openssh
 }
 

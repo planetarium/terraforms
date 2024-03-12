@@ -10,7 +10,7 @@ variable "memory" {
   default     = 512
 }
 
-variable "image" {
+variable "image_tag" {
   description = "Docker Image tag"
   type        = string
   default     = "git-aa7e94562660561a24565f5581396c4fffdf1336"
@@ -39,12 +39,6 @@ variable "cluster_id" {
   default     = ""
 }
 
-variable "create_cluster" {
-  description = "A boolean flag to control whether the ECS cluster should be created"
-  type        = bool
-  default     = false
-}
-
 variable "desired_count" {
   description = "The number of instances of the task definition to place and keep running"
   type        = number
@@ -59,4 +53,14 @@ variable "environment" {
   description = "The deployment environment (e.g., dev, prod)"
   type        = string
   default     = "dev"
+}
+
+variable "service_name" {
+  type        = string
+  description = "Service name"
+  default     = "ninecubs"
+}
+
+locals {
+  kebab_case_prefix = "${var.cluster_name}-${var.service_name}-${var.environment}"
 }
