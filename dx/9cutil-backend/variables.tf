@@ -3,6 +3,11 @@ variable "vpc_id" {
   type        = string
 }
 
+variable "vpc_cidr_block" {
+  description = "The VPC ID where the security group will be created"
+  type        = string
+}
+
 variable "cluster_name" {
   type        = string
   description = "Name of the ECS cluster"

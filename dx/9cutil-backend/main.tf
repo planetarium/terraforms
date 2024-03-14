@@ -7,9 +7,9 @@ terraform {
   required_version = ">= 1.3.6"
 
   backend "s3" {
-    bucket = "9c-tfstates.planetarium.dev"
-    key    = "9cutilbackend/dx"
-    region = "ap-northeast-2"
+    bucket = "9c-tfstates"
+    key    = "dx"
+    region = "us-east-2"
   }
 }
 
@@ -18,7 +18,7 @@ module "mongodb_ecs" {
 
   cpu            = 1024
   memory         = 2048
-  vpc_id         = aws_vpc.main.id
+  vpc_id         = var.vpc_id
   cluster_id     = aws_ecs_cluster.ecs_cluster.id
   cluster_name   = var.cluster_name
   desired_count  = 1
@@ -30,7 +30,7 @@ module "zeroc_ecs" {
 
   cpu            = 4096
   memory         = 31000
-  vpc_id         = aws_vpc.main.id
+  vpc_id         = var.vpc_id
   cluster_id     = aws_ecs_cluster.ecs_cluster.id
   cluster_name   = var.cluster_name
   image_tag      = var.zeroc_image
@@ -45,7 +45,7 @@ module "ninec_utilbackend_ecs" {
 
   cpu            = 1024
   memory         = 2048
-  vpc_id         = aws_vpc.main.id
+  vpc_id         = var.vpc_id
   cluster_id     = aws_ecs_cluster.ecs_cluster.id
   cluster_name   = var.cluster_name
   image_tag      = var.ninecub_image
@@ -58,7 +58,7 @@ module "ninec_utilbackend_store_ecs" {
 
   cpu            = 1024
   memory         = 2048
-  vpc_id         = aws_vpc.main.id
+  vpc_id         = var.vpc_id
   cluster_id     = aws_ecs_cluster.ecs_cluster.id
   cluster_name   = var.cluster_name
   image_tag      = var.ninecubs_image

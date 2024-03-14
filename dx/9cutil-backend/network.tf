@@ -16,7 +16,7 @@ resource "aws_subnet" "public" {
   count                   = local.azs_count
   vpc_id                  = var.vpc_id
   availability_zone       = local.azs_names[count.index]
-  cidr_block              = cidrsubnet(aws_vpc.main.cidr_block, 8, 10 + count.index)
+  cidr_block              = cidrsubnet(var.vpc_cidr_block, 8, 10 + count.index)
   map_public_ip_on_launch = true
   tags                    = { Name = "${local.kebab_case_prefix}-ecs-public-${local.azs_names[count.index]}" }
 }
@@ -24,7 +24,7 @@ resource "aws_subnet" "private" {
   count             = local.azs_count
   vpc_id            = var.vpc_id
   availability_zone = local.azs_names[count.index]
-  cidr_block        = cidrsubnet(aws_vpc.main.cidr_block, 8, 20 + count.index)
+  cidr_block        = cidrsubnet(var.vpc_cidr_block, 8, 20 + count.index)
   tags              = { Name = "${local.kebab_case_prefix}-ecs-private-${local.azs_names[count.index]}" }
 }
 
