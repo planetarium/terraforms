@@ -5,16 +5,16 @@ locals {
   azs_names = data.aws_availability_zones.available.names
 }
 
-resource "aws_vpc" "main" {
-  cidr_block           = "10.10.0.0/16"
-  enable_dns_hostnames = true
-  enable_dns_support   = true
-  tags                 = { Name = "${local.kebab_case_prefix}-ecs-vpc" }
-}
+# resource "aws_vpc" "main" {
+#   cidr_block           = "10.10.0.0/16"
+#   enable_dns_hostnames = true
+#   enable_dns_support   = true
+#   tags                 = { Name = "${local.kebab_case_prefix}-ecs-vpc" }
+# }
 
 resource "aws_subnet" "public" {
   count                   = local.azs_count
-  vpc_id                  = aws_vpc.main.id
+  vpc_id                  = var.vpc_id
   availability_zone       = local.azs_names[count.index]
   cidr_block              = cidrsubnet(aws_vpc.main.cidr_block, 8, 10 + count.index)
   map_public_ip_on_launch = true
@@ -22,7 +22,7 @@ resource "aws_subnet" "public" {
 }
 resource "aws_subnet" "private" {
   count             = local.azs_count
-  vpc_id            = aws_vpc.main.id
+  vpc_id            = var.vpc_id
   availability_zone = local.azs_names[count.index]
   cidr_block        = cidrsubnet(aws_vpc.main.cidr_block, 8, 20 + count.index)
   tags              = { Name = "${local.kebab_case_prefix}-ecs-private-${local.azs_names[count.index]}" }
@@ -42,12 +42,12 @@ resource "aws_nat_gateway" "main" {
 }
 
 resource "aws_internet_gateway" "main" {
-  vpc_id = aws_vpc.main.id
+  vpc_id = var.vpc_id
   tags   = { Name = "${local.kebab_case_prefix}-ecs-igw" }
 }
 
 resource "aws_route_table" "public" {
-  vpc_id = aws_vpc.main.id
+  vpc_id = var.vpc_id
   tags   = { Name = "${local.kebab_case_prefix}-ecs-rt-public" }
 
   route {
@@ -62,7 +62,7 @@ resource "aws_route_table_association" "public" {
   route_table_id = aws_route_table.public.id
 }
 resource "aws_route_table" "private" {
-  vpc_id = aws_vpc.main.id
+  vpc_id = var.vpc_id
   tags   = { Name = "${local.kebab_case_prefix}-ecs-rt-private" }
 
   route {
