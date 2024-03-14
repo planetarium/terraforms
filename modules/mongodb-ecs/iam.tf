@@ -30,7 +30,7 @@ resource "aws_iam_policy" "secret_read_policy" {
         Action = "secretsmanager:GetSecretValue",
         Effect = "Allow",
         Resource = [
-          aws_secretsmanager_secret.mongodb_secret.arn,
+          aws_secretsmanager_secret.secret.arn,
         ]
       }
     ]

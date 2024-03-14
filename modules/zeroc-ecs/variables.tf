@@ -69,7 +69,7 @@ variable "environment" {
 variable "service_name" {
   type        = string
   description = "Service name"
-  default     = "ninecubs"
+  default     = "zeroc"
 }
 
 locals {

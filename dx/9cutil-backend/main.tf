@@ -20,8 +20,9 @@ module "mongodb_ecs" {
   memory         = 2048
   vpc_id         = aws_vpc.main.id
   cluster_id     = aws_ecs_cluster.ecs_cluster.id
+  cluster_name   = var.cluster_name
   desired_count  = 1
-  public_subnets        = aws_subnet.public[*].id
+  public_subnets = aws_subnet.public[*].id
 }
 
 module "zeroc_ecs" {
@@ -31,7 +32,8 @@ module "zeroc_ecs" {
   memory         = 31000
   vpc_id         = aws_vpc.main.id
   cluster_id     = aws_ecs_cluster.ecs_cluster.id
-  image_tag          = var.zeroc_image
+  cluster_name   = var.cluster_name
+  image_tag      = var.zeroc_image
   instance_type  = "r7g.xlarge"
   desired_count  = 1
   subnets        = aws_subnet.private[*].id
@@ -45,7 +47,8 @@ module "ninec_utilbackend_ecs" {
   memory         = 2048
   vpc_id         = aws_vpc.main.id
   cluster_id     = aws_ecs_cluster.ecs_cluster.id
-  image_tag          = var.ninecub_image
+  cluster_name   = var.cluster_name
+  image_tag      = var.ninecub_image
   desired_count  = 1
   public_subnets = aws_subnet.public[*].id
 }
@@ -57,7 +60,8 @@ module "ninec_utilbackend_store_ecs" {
   memory         = 2048
   vpc_id         = aws_vpc.main.id
   cluster_id     = aws_ecs_cluster.ecs_cluster.id
-  image_tag          = var.ninecubs_image
+  cluster_name   = var.cluster_name
+  image_tag      = var.ninecubs_image
   desired_count  = 1
   public_subnets = aws_subnet.public[*].id
 }
