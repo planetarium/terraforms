@@ -25,6 +25,10 @@
       {
         "name": "StateService__JwtIssuer",
         "valueFrom": "${jwt_issuer}"
+      },
+      {
+        "name": "EmptyChronicle__Endpoint",
+        "valueFrom": "${emptychronicle_endpoint}"
       }
     ],
     "portMappings": [
