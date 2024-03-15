@@ -1,7 +1,0 @@
-cluster_name = "dx"
-region = "us-east-2"
-zeroc_image = "git-475c5b93acd39818796f8aa7ed1cf978626c5b55"
-ninecub_image = "git-dbc5b2917404d60858dfe1ae992c60a3b4a9031e"
-ninecubs_image = "git-e09438e885052a63a52ced8db1b898ed7f123eb9"
-vpc_id = "vpc-01a0ef2aa2c41bb26"
-vpc_cidr_block = "10.0.0.0/16"
