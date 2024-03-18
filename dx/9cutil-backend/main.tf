@@ -28,13 +28,13 @@ module "mongodb_ecs" {
 module "zeroc_ecs" {
   source = "../../modules/zeroc-ecs"
 
-  cpu            = 4096
-  memory         = 31000
+  cpu            = 8192
+  memory         = 63400
   vpc_id         = local.vpc_id
   cluster_id     = aws_ecs_cluster.ecs_cluster.id
   cluster_name   = var.cluster_name
   image_tag      = var.zeroc_image
-  instance_type  = "r7g.xlarge"
+  instance_type  = "r7g.2xlarge"
   desired_count  = 1
   subnets        = local.private_subnet_ids
   public_subnets = local.public_subnet_ids
