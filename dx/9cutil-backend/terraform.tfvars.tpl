@@ -1,6 +1,6 @@
 cluster_name = "dx"
 region = "us-east-2"
-zeroc_image = "git-475c5b93acd39818796f8aa7ed1cf978626c5b55"
+zeroc_image = "git-1923ea6811cd9221db161581c7d59b511dc238c7"
 ninecub_image = "git-447f4e5a905fa723b7a3d3f4ef222ba3d3b96bbe"
 ninecubs_image = "git-a0ce9952517bbccca0d9bc9c2a135dd208de1253"
 existing_vpc_id = "op://DX/DX Ecs Cluster tfvars/add more/vpc_id"
