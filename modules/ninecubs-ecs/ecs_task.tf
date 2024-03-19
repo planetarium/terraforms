@@ -7,13 +7,7 @@ resource "aws_ecs_task_definition" "ecs_task" {
   execution_role_arn       = aws_iam_role.ecs_task_execution_role.arn
   task_role_arn            = aws_iam_role.ecs_task_execution_role.arn
 
-  container_definitions = data.template_file.container_definition.rendered
-}
-
-data "template_file" "container_definition" {
-  template = file("${path.module}/container-definitions/ninec_ubs.tpl")
-
-  vars = {
+  container_definitions = templatefile("${path.module}/container-definitions/ninec_ubs.tpl", {
     image                        = var.image_tag
     cpu                          = var.cpu
     memory                       = var.memory
@@ -23,5 +17,5 @@ data "template_file" "container_definition" {
     emptychronicle_base_url      = "${aws_secretsmanager_secret.secret.arn}:emptychronicle_base_url::"
     mongodb_db_connection_string = "${aws_secretsmanager_secret.secret.arn}:mongodb_db_connection_string::"
     mongodb_dbname               = "${aws_secretsmanager_secret.secret.arn}:mongodb_dbname::"
-  }
+  })
 }
