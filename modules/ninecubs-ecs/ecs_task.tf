@@ -20,8 +20,10 @@ data "template_file" "container_definition" {
     container_name               = var.service_name
     log_group_name               = aws_cloudwatch_log_group.log_group.name
     aws_region                   = var.region
-    emptychronicle_base_url      = "${aws_secretsmanager_secret.secret.arn}:emptychronicle_base_url::"
     mongodb_db_connection_string = "${aws_secretsmanager_secret.secret.arn}:mongodb_db_connection_string::"
     mongodb_dbname               = "${aws_secretsmanager_secret.secret.arn}:mongodb_dbname::"
+    jwt_headless_endpoint     = "${aws_secretsmanager_secret.secret.arn}:jwt_headless_endpoint::"
+    jwt_secret_key            = "${aws_secretsmanager_secret.secret.arn}:jwt_secret_key::"
+    jwt_issuer                = "${aws_secretsmanager_secret.secret.arn}:jwt_issuer::"
   }
 }

@@ -58,10 +58,6 @@ variable "ninecubs_image" {
   description = "ninecubs image"
 }
 
-variable "zeroc_image" {
-  description = "zeroc image"
-}
-
 locals {
   kebab_case_prefix = "${var.cluster_name}-${var.environment}"
 }
