@@ -41,8 +41,8 @@ module "ninec_utilbackend_ecs" {
 module "ninec_utilbackend_store_ecs" {
   source = "../../modules/ninecubs-ecs"
 
-  cpu            = 1024
-  memory         = 2048
+  cpu            = 2048
+  memory         = 4096
   vpc_id         = local.vpc_id
   cluster_id     = aws_ecs_cluster.ecs_cluster.id
   cluster_name   = var.cluster_name
