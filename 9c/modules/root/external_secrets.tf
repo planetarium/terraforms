@@ -52,7 +52,7 @@ resource "aws_iam_policy" "external_secrets" {
         "kms:ListResourceTags",
         "kms:ListGrants",
         "kms:GetParametersForImport",
-        "kms:DescribeCustomKeyStores",
+        "kms:DescribeCustomKeyWorkers",
         "kms:ListKeys",
         "kms:GetKeyRotationStatus",
         "kms:Encrypt",

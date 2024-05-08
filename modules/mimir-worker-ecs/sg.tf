@@ -1,6 +1,6 @@
 resource "aws_security_group" "sg" {
   name        = "${local.kebab_case_prefix}-ecs-sg"
-  description = "Security group for ninecubs"
+  description = "Security group for mimir-worker"
   vpc_id      = var.vpc_id
 
   egress {

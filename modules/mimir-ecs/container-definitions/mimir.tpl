@@ -1,7 +1,7 @@
 [
   {
     "name": "${container_name}",
-    "image": "docker.io/planetariumhq/9cutil-backend:${image}",
+    "image": "docker.io/planetariumhq/mimir:${image}",
     "cpu": ${cpu},
     "memory": ${memory},
     "essential": true,

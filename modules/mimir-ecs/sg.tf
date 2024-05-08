@@ -1,6 +1,6 @@
 resource "aws_security_group" "alb_sg" {
   name        = "${local.kebab_case_prefix}-ecs-alb-sg"
-  description = "Security group for ninecub"
+  description = "Security group for mimir"
   vpc_id      = var.vpc_id
 
   ingress {
@@ -24,7 +24,7 @@ resource "aws_security_group" "alb_sg" {
 
 resource "aws_security_group" "service_sg" {
   name        = "${local.kebab_case_prefix}-ecs-service-sg"
-  description = "Security group for ninecub"
+  description = "Security group for mimir"
   vpc_id      = var.vpc_id
 
   ingress {

@@ -42,7 +42,7 @@ resource "aws_lb_listener" "http_listener" {
   }
 }
 
-# resource "aws_lb_listener" "ninecub_https_listener" {
+# resource "aws_lb_listener" "mimir_https_listener" {
 #   load_balancer_arn = aws_lb.alb.arn
 #   port              = 443
 #   protocol          = "HTTPS"
@@ -51,6 +51,6 @@ resource "aws_lb_listener" "http_listener" {
 
 #   default_action {
 #     type             = "forward"
-#     target_group_arn = aws_lb_target_group.ninecub_tg.arn
+#     target_group_arn = aws_lb_target_group.mimir_tg.arn
 #   }
 # }

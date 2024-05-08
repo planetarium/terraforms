@@ -50,12 +50,12 @@ variable "region" {
   default     = "us-east-2"
 }
 
-variable "ninecub_image" {
-  description = "ninecub image"
+variable "mimir_image" {
+  description = "mimir image"
 }
 
-variable "ninecubs_image" {
-  description = "ninecubs image"
+variable "mimir_worker_image" {
+  description = "mimir_worker image"
 }
 
 locals {

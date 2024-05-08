@@ -24,7 +24,7 @@ variable "vpc_id" {
 variable "region" {
   description = "Region"
   type        = string
-  default     = "us-east-2"
+  default = "us-east-2"
 }
 
 variable "cluster_name" {
@@ -36,6 +36,7 @@ variable "cluster_name" {
 variable "cluster_id" {
   type        = string
   description = "ID of the ECS cluster"
+  default     = ""
 }
 
 variable "desired_count" {
@@ -57,9 +58,15 @@ variable "environment" {
 variable "service_name" {
   type        = string
   description = "Service name"
-  default     = "ninecub"
+  default     = "mimir-worker"
+}
+
+variable "network" {
+  description = "The network name (e.g., odin, heimdall)"
+  type        = string
+  default     = "heimdall"
 }
 
 locals {
-  kebab_case_prefix = "${var.cluster_name}-${var.service_name}-${var.environment}"
+  kebab_case_prefix = "${var.cluster_name}-${var.service_name}-${var.network}-${var.environment}"
 }

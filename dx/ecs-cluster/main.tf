@@ -23,30 +23,49 @@ module "mongodb_ecs" {
   cluster_name   = var.cluster_name
   desired_count  = 1
   public_subnets = local.public_subnet_ids
+  environment    = "prod"
 }
 
-module "ninec_utilbackend_ecs" {
-  source = "../../modules/ninecub-ecs"
+module "mimir_ecs" {
+  source = "../../modules/mimir-ecs"
 
   cpu            = 2048
   memory         = 4096
   vpc_id         = local.vpc_id
   cluster_id     = aws_ecs_cluster.ecs_cluster.id
   cluster_name   = var.cluster_name
-  image_tag      = var.ninecub_image
+  image_tag      = var.mimir_image
   desired_count  = 1
   public_subnets = local.public_subnet_ids
+  environment    = "prod"
 }
 
-module "ninec_utilbackend_store_ecs" {
-  source = "../../modules/ninecubs-ecs"
+module "mimir_worker_heimdall_ecs" {
+  source = "../../modules/mimir-worker-ecs"
 
-  cpu            = 2048
-  memory         = 4096
+  cpu            = 1024
+  memory         = 2048
   vpc_id         = local.vpc_id
   cluster_id     = aws_ecs_cluster.ecs_cluster.id
   cluster_name   = var.cluster_name
-  image_tag      = var.ninecubs_image
+  image_tag      = var.mimir_worker_image
   desired_count  = 1
   public_subnets = local.public_subnet_ids
+  environment    = "prod"
+  network        = "heimdall"
+}
+
+module "mimir_worker_odin_ecs" {
+  source = "../../modules/mimir-worker-ecs"
+
+  cpu            = 1024
+  memory         = 2048
+  vpc_id         = local.vpc_id
+  cluster_id     = aws_ecs_cluster.ecs_cluster.id
+  cluster_name   = var.cluster_name
+  image_tag      = var.mimir_worker_image
+  desired_count  = 1
+  public_subnets = local.public_subnet_ids
+  environment    = "prod"
+  network        = "odin"
 }

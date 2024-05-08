@@ -24,7 +24,7 @@ variable "vpc_id" {
 variable "region" {
   description = "Region"
   type        = string
-  default = "us-east-2"
+  default     = "us-east-2"
 }
 
 variable "cluster_name" {
@@ -36,7 +36,6 @@ variable "cluster_name" {
 variable "cluster_id" {
   type        = string
   description = "ID of the ECS cluster"
-  default     = ""
 }
 
 variable "desired_count" {
@@ -58,7 +57,7 @@ variable "environment" {
 variable "service_name" {
   type        = string
   description = "Service name"
-  default     = "ninecubs"
+  default     = "mimir"
 }
 
 locals {
