@@ -7,13 +7,7 @@ resource "aws_ecs_task_definition" "ecs_task" {
   execution_role_arn       = aws_iam_role.ecs_task_execution_role.arn
   task_role_arn            = aws_iam_role.ecs_task_execution_role.arn
 
-  container_definitions = data.template_file.container_definition.rendered
-}
-
-data "template_file" "container_definition" {
-  template = file("${path.module}/container-definitions/mimir-worker.tpl")
-
-  vars = {
+  container_definitions = templatefile("${path.module}/container-definitions/mimir-worker.tpl", {
     image                        = var.image_tag
     cpu                          = var.cpu
     memory                       = var.memory
@@ -25,5 +19,5 @@ data "template_file" "container_definition" {
     jwt_headless_endpoint        = "${aws_secretsmanager_secret.secret.arn}:jwt_headless_endpoint::"
     jwt_secret_key               = "${aws_secretsmanager_secret.secret.arn}:jwt_secret_key::"
     jwt_issuer                   = "${aws_secretsmanager_secret.secret.arn}:jwt_issuer::"
-  }
+  })
 }
