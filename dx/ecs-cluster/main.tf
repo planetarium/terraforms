@@ -4,7 +4,7 @@ terraform {
       version = ">= 3"
     }
   }
-  required_version = ">= 1.3.6"
+  required_version = ">= 1.8.3"
 
   backend "s3" {
     bucket = "9c-tfstates"
