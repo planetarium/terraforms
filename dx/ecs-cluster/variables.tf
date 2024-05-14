@@ -58,6 +58,14 @@ variable "mimir_worker_image" {
   description = "mimir_worker image"
 }
 
+variable "ncboard_image" {
+  description = "9c-board image"
+}
+
+variable "network_conf_map" {
+  description = "9c-board's required environment variable"
+}
+
 locals {
   kebab_case_prefix = "${var.cluster_name}-${var.environment}"
 }

@@ -69,3 +69,17 @@ module "mimir_worker_odin_ecs" {
   environment    = "prod"
   network        = "odin"
 }
+
+module "ncboard_ecs" {
+  source = "../../modules/ncboard-ecs"
+
+  cpu              = 2048
+  memory           = 4096
+  vpc_id           = local.vpc_id
+  cluster_id       = aws_ecs_cluster.ecs_cluster.id
+  cluster_name     = var.cluster_name
+  image_tag        = var.ncboard_image
+  desired_count    = 1
+  public_subnets   = local.public_subnet_ids
+  network_conf_map = var.network_conf_map
+}
