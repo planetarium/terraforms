@@ -9,7 +9,7 @@ resource "aws_ecs_service" "ecs_service" {
   load_balancer {
     target_group_arn = aws_lb_target_group.tg.arn
     container_name   = var.service_name
-    container_port   = 8080
+    container_port   = 3000
   }
 
   network_configuration {
