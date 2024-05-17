@@ -60,6 +60,12 @@ variable "service_name" {
   default     = "mimir"
 }
 
+variable "use_jwt" {
+  description = "Flag to include JWT related secrets"
+  type        = bool
+  default     = true
+}
+
 locals {
   kebab_case_prefix = "${var.cluster_name}-${var.service_name}-${var.environment}"
 }

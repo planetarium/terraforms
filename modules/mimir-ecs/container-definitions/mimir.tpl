@@ -14,21 +14,15 @@
         "name": "Database__DatabaseName",
         "valueFrom": "${mongodb_dbname}"
       },
+      %{ for secret in jwt_secrets ~}
+      {
+        "name": "${secret.name}",
+        "valueFrom": "${secret.valueFrom}"
+      },
+      %{ endfor ~}
       {
         "name": "StateService__HeadlessEndpoint",
         "valueFrom": "${jwt_headless_endpoint}"
-      },
-      {
-        "name": "StateService__JwtSecretKey",
-        "valueFrom": "${jwt_secret_key}"
-      },
-      {
-        "name": "StateService__JwtIssuer",
-        "valueFrom": "${jwt_issuer}"
-      },
-      {
-        "name": "EmptyChronicle__Endpoint",
-        "valueFrom": "${emptychronicle_endpoint}"
       }
     ],
     "portMappings": [

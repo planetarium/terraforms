@@ -14,17 +14,15 @@
         "name": "WORKER_Configuration__DatabaseName",
         "valueFrom": "${mongodb_dbname}"
       },
+      %{ for secret in jwt_secrets ~}
+      {
+        "name": "${secret.name}",
+        "valueFrom": "${secret.valueFrom}"
+      },
+      %{ endfor ~}
       {
         "name": "WORKER_Configuration__HeadlessEndpoint",
         "valueFrom": "${jwt_headless_endpoint}"
-      },
-      {
-        "name": "WORKER_Configuration__JwtSecretKey",
-        "valueFrom": "${jwt_secret_key}"
-      },
-      {
-        "name": "WORKER_Configuration__JwtIssuer",
-        "valueFrom": "${jwt_issuer}"
       }
     ],
     "logConfiguration": {

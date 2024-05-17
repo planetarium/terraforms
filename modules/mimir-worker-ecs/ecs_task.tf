@@ -17,7 +17,19 @@ resource "aws_ecs_task_definition" "ecs_task" {
     mongodb_db_connection_string = "${aws_secretsmanager_secret.secret.arn}:mongodb_db_connection_string::"
     mongodb_dbname               = "${aws_secretsmanager_secret.secret.arn}:mongodb_dbname::"
     jwt_headless_endpoint        = "${aws_secretsmanager_secret.secret.arn}:jwt_headless_endpoint::"
-    jwt_secret_key               = "${aws_secretsmanager_secret.secret.arn}:jwt_secret_key::"
-    jwt_issuer                   = "${aws_secretsmanager_secret.secret.arn}:jwt_issuer::"
+    jwt_secrets                  = local.jwt_secrets
   })
+}
+
+locals {
+  jwt_secrets = var.use_jwt ? [
+    {
+      name      = "WORKER_Configuration__JwtSecretKey",
+      valueFrom = "${aws_secretsmanager_secret.secret.arn}:jwt_secret_key::"
+    },
+    {
+      name      = "WORKER_Configuration__JwtIssuer",
+      valueFrom = "${aws_secretsmanager_secret.secret.arn}:jwt_issuer::"
+    }
+  ] : []
 }
