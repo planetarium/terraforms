@@ -143,14 +143,15 @@ module "internal_mimir_worker_odin_ecs" {
 module "ncboard_ecs" {
   source = "../../modules/ncboard-ecs"
 
-  cpu              = 1024
-  memory           = 2048
-  vpc_id           = local.vpc_id
-  cluster_id       = aws_ecs_cluster.ecs_cluster.id
-  cluster_name     = var.cluster_name
-  image_tag        = var.ncboard_image
-  desired_count    = 1
-  public_subnets   = local.public_subnet_ids
-  network_conf_map = var.network_conf_map
-  environment      = "prod"
+  cpu                   = 1024
+  memory                = 2048
+  vpc_id                = local.vpc_id
+  cluster_id            = aws_ecs_cluster.ecs_cluster.id
+  cluster_name          = var.cluster_name
+  image_tag             = var.ncboard_image
+  desired_count         = 1
+  public_subnets        = local.public_subnet_ids
+  network_conf_map      = var.network_conf_map
+  mimir_graphql_url_map = var.mimir_graphql_url_map
+  environment           = "prod"
 }

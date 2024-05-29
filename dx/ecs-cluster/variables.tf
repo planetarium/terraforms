@@ -66,6 +66,10 @@ variable "network_conf_map" {
   description = "9c-board's required environment variable"
 }
 
+variable "mimir_graphql_url_map" {
+  description = "9c-board's required environment variable"
+}
+
 locals {
   kebab_case_prefix = "${var.cluster_name}-${var.environment}"
 }

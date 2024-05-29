@@ -65,6 +65,11 @@ variable "network_conf_map" {
   description = "NETWORK_CONF_MAP environment variable"
 }
 
+variable "mimir_graphql_url_map" {
+  type        = string
+  description = "MIMIR_GRAPHQL_URL_MAP environment variable"
+}
+
 locals {
   kebab_case_prefix = "${var.cluster_name}-${var.service_name}-${var.environment}"
 }
