@@ -55,6 +55,7 @@ module "mimir_worker_heimdall_ecs" {
   public_subnets = local.public_subnet_ids
   environment    = "prod"
   network        = "heimdall"
+  use_jwt        = false
 }
 
 module "mimir_worker_odin_ecs" {
@@ -70,6 +71,7 @@ module "mimir_worker_odin_ecs" {
   public_subnets = local.public_subnet_ids
   environment    = "prod"
   network        = "odin"
+  use_jwt        = false
 }
 
 # Mimir internal

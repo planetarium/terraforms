@@ -5,6 +5,12 @@
     "cpu": ${cpu},
     "memory": ${memory},
     "essential": true,
+    "environment": [
+      {
+        "name": "WORKER_Logging__LogLevel__System.Net.Http.HttpClient",
+        "value": "Warning"
+      }
+    ],
     "secrets": [
       {
         "name": "WORKER_Configuration__MongoDbConnectionString",

@@ -1,8 +1,8 @@
 cluster_name = "dx"
 region = "us-east-2"
-mimir_image = "git-b086ac376fe434d474bf7d72fefea0586f65ad38"
-mimir_worker_image = "git-b086ac376fe434d474bf7d72fefea0586f65ad38"
-ncboard_image = "git-52657be1cda0b6a432a0ff37873f786c1b43fc7f"
+mimir_image = "git-9a574c3af7815278dfb194c3bb2311652b7b72bd"
+mimir_worker_image = "git-9a574c3af7815278dfb194c3bb2311652b7b72bd"
+ncboard_image = "git-6a5e1d62deeb53cc98a4c17118d35ba0bde2ba0a"
 existing_vpc_id = "op://DX/DX Ecs Cluster tfvars/add more/vpc_id"
 vpc_cidr_block = "10.0.0.0/16"
 existing_subnet_ids_public = op://DX/DX Ecs Cluster tfvars/add more/existing_subnet_ids_public
