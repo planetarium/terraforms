@@ -1,5 +1,5 @@
 resource "aws_ecs_task_definition" "ecs_task" {
-  family                   = "mimir-worker-task"
+  family                   = "${local.kebab_case_prefix}-task"
   network_mode             = "awsvpc"
   requires_compatibilities = ["FARGATE"]
   cpu                      = var.cpu
@@ -11,7 +11,7 @@ resource "aws_ecs_task_definition" "ecs_task" {
     image                        = var.image_tag
     cpu                          = var.cpu
     memory                       = var.memory
-    container_name               = var.service_name
+    container_name               = local.kebab_case_prefix
     log_group_name               = aws_cloudwatch_log_group.log_group.name
     aws_region                   = var.region
     mongodb_db_connection_string = "${aws_secretsmanager_secret.secret.arn}:mongodb_db_connection_string::"
