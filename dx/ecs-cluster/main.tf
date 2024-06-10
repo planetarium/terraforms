@@ -45,8 +45,8 @@ module "mimir_ecs" {
 module "mimir_worker_heimdall_ecs" {
   source = "../../modules/mimir-worker-ecs"
 
-  cpu            = 2048
-  memory         = 4096
+  cpu            = 4096
+  memory         = 8192
   vpc_id         = local.vpc_id
   cluster_id     = aws_ecs_cluster.ecs_cluster.id
   cluster_name   = var.cluster_name
@@ -61,8 +61,8 @@ module "mimir_worker_heimdall_ecs" {
 module "mimir_worker_odin_ecs" {
   source = "../../modules/mimir-worker-ecs"
 
-  cpu            = 2048
-  memory         = 4096
+  cpu            = 4096
+  memory         = 8192
   vpc_id         = local.vpc_id
   cluster_id     = aws_ecs_cluster.ecs_cluster.id
   cluster_name   = var.cluster_name
