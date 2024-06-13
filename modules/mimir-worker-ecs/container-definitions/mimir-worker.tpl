@@ -21,6 +21,10 @@
         "valueFrom": "${mongodb_db_connection_string}"
       },
       {
+        "name": "WORKER_Configuration__SentryDsn",
+        "valueFrom": "${sentry_dsn}"
+      },
+      {
         "name": "WORKER_Configuration__DatabaseName",
         "valueFrom": "${mongodb_dbname}"
       },
