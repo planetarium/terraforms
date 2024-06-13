@@ -9,6 +9,10 @@
       {
         "name": "WORKER_Logging__LogLevel__System.Net.Http.HttpClient",
         "value": "Warning"
+      },
+      {
+        "name": "WORKER_Configuration__EnableInitializing",
+        "value": "true"
       }
     ],
     "secrets": [
