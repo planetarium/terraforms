@@ -1,5 +1,5 @@
 resource "aws_lb" "alb" {
-  name                       = "${local.kebab_case_prefix}-ecs-alb"
+  name                       = "${local.kebab_case_prefix}-alb"
   internal                   = false
   load_balancer_type         = "application"
   subnets                    = var.public_subnets
@@ -13,7 +13,7 @@ resource "aws_lb" "alb" {
 }
 
 resource "aws_lb_target_group" "tg" {
-  name        = "${local.kebab_case_prefix}-ecs-tg"
+  name        = "${local.kebab_case_prefix}-tg"
   port        = 8080
   protocol    = "HTTP"
   vpc_id      = var.vpc_id

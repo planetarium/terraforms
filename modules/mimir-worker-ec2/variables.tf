@@ -10,6 +10,11 @@ variable "memory" {
   default     = 512
 }
 
+variable "ecs_capacity_provider_name" {
+  description = "ecs_capacity_provider name"
+  type        = string
+}
+
 variable "image_tag" {
   description = "Docker Image tag"
   type        = string
@@ -24,7 +29,7 @@ variable "vpc_id" {
 variable "region" {
   description = "Region"
   type        = string
-  default     = "us-east-2"
+  default = "us-east-2"
 }
 
 variable "cluster_name" {
@@ -36,6 +41,7 @@ variable "cluster_name" {
 variable "cluster_id" {
   type        = string
   description = "ID of the ECS cluster"
+  default     = ""
 }
 
 variable "desired_count" {
@@ -43,8 +49,13 @@ variable "desired_count" {
   type        = number
 }
 
+variable "private_subnets" {
+  description = "The list of private subnet IDs for the task or service"
+  type        = list(string)
+}
+
 variable "public_subnets" {
-  description = "The list of subnet IDs for the task or service"
+  description = "The list of public subnet IDs for the task or service"
   type        = list(string)
 }
 
@@ -54,10 +65,10 @@ variable "environment" {
   default     = "dev"
 }
 
-variable "service_name" {
+variable "network" {
+  description = "The network name (e.g., odin, heimdall)"
   type        = string
-  description = "Service name"
-  default     = "mimir"
+  default     = "heimdall"
 }
 
 variable "use_jwt" {
@@ -67,5 +78,5 @@ variable "use_jwt" {
 }
 
 locals {
-  kebab_case_prefix = "${var.cluster_name}-${var.service_name}-${var.environment}"
+  kebab_case_prefix = "${var.cluster_name}-worker-${var.network}-${var.environment}"
 }

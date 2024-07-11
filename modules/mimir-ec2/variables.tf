@@ -24,7 +24,7 @@ variable "vpc_id" {
 variable "region" {
   description = "Region"
   type        = string
-  default = "us-east-2"
+  default     = "us-east-2"
 }
 
 variable "cluster_name" {
@@ -36,12 +36,16 @@ variable "cluster_name" {
 variable "cluster_id" {
   type        = string
   description = "ID of the ECS cluster"
-  default     = ""
 }
 
 variable "desired_count" {
   description = "The number of instances of the task definition to place and keep running"
   type        = number
+}
+
+variable "private_subnets" {
+  description = "The list of private subnet IDs for the task or service"
+  type        = list(string)
 }
 
 variable "public_subnets" {
@@ -55,10 +59,9 @@ variable "environment" {
   default     = "dev"
 }
 
-variable "service_name" {
+variable "ecs_capacity_provider_name" {
+  description = "ecs_capacity_provider name"
   type        = string
-  description = "Service name"
-  default     = "mimir-worker"
 }
 
 variable "network" {
@@ -74,5 +77,5 @@ variable "use_jwt" {
 }
 
 locals {
-  kebab_case_prefix = "${var.cluster_name}-${var.service_name}-${var.network}-${var.environment}"
+  kebab_case_prefix = "${var.cluster_name}-${var.network}-${var.environment}"
 }

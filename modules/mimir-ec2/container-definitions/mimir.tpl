@@ -5,14 +5,16 @@
     "cpu": ${cpu},
     "memory": ${memory},
     "essential": true,
+    "environment": [
+      {
+        "name": "Database__Database",
+        "value": "${mongodb_dbname}"
+      }
+    ],
     "secrets": [
       {
         "name": "Database__ConnectionString",
         "valueFrom": "${mongodb_connection_string}"
-      },
-      {
-        "name": "Database__DatabaseName",
-        "valueFrom": "${mongodb_dbname}"
       },
       %{ for secret in jwt_secrets ~}
       {

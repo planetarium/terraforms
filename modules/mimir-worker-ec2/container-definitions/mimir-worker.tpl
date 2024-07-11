@@ -13,6 +13,10 @@
       {
         "name": "WORKER_Configuration__EnableInitializing",
         "value": "true"
+      },
+      {
+        "name": "WORKER_Configuration__DatabaseName",
+        "value": "${mongodb_dbname}"
       }
     ],
     "secrets": [
@@ -23,10 +27,6 @@
       {
         "name": "WORKER_Configuration__SentryDsn",
         "valueFrom": "${sentry_dsn}"
-      },
-      {
-        "name": "WORKER_Configuration__DatabaseName",
-        "valueFrom": "${mongodb_dbname}"
       },
       %{ for secret in jwt_secrets ~}
       {

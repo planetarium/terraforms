@@ -20,6 +20,16 @@ resource "aws_iam_role_policy_attachment" "ecs_task_execution_role_policy" {
   policy_arn = "arn:aws:iam::aws:policy/service-role/AmazonECSTaskExecutionRolePolicy"
 }
 
+resource "aws_iam_role_policy_attachment" "secret_read_policy_attachment" {
+  role       = aws_iam_role.ecs_task_execution_role.name
+  policy_arn = aws_iam_policy.secret_read_policy.arn
+}
+
+resource "aws_iam_role_policy_attachment" "ecs_logs_policy_attachment" {
+  role       = aws_iam_role.ecs_task_execution_role.name
+  policy_arn = aws_iam_policy.ecs_logs_policy.arn
+}
+
 resource "aws_iam_policy" "secret_read_policy" {
   name        = "${local.kebab_case_prefix}-ecs-secret-read-policy"
   description = "A policy that allows ECS tasks to read secrets from AWS Secret Manager."
@@ -37,7 +47,21 @@ resource "aws_iam_policy" "secret_read_policy" {
   })
 }
 
-resource "aws_iam_role_policy_attachment" "secret_read_policy_attachment" {
-  role       = aws_iam_role.ecs_task_execution_role.name
-  policy_arn = aws_iam_policy.secret_read_policy.arn
+resource "aws_iam_policy" "ecs_logs_policy" {
+  name        = "${local.kebab_case_prefix}-ecs-logs-policy"
+  description = "Allow ECS tasks to push logs to CloudWatch"
+
+  policy = jsonencode({
+    Version = "2012-10-17",
+    Statement = [
+      {
+        Action = [
+          "logs:CreateLogStream",
+          "logs:PutLogEvents"
+        ],
+        Resource = "arn:aws:logs:*:*:*",
+        Effect   = "Allow"
+      }
+    ]
+  })
 }
