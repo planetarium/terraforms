@@ -88,6 +88,11 @@ variable "mimir_worker_image" {
   description = "mimir_worker image"
 }
 
+variable "db_username" {
+  description = "Database master username"
+  type        = string
+}
+
 locals {
   kebab_case_prefix = "${var.cluster_name}-${var.environment}"
 }

@@ -15,6 +15,10 @@
         "value": "true"
       },
       {
+        "name": "WORKER_Configuration__MongoDbCAFile",
+        "value": "/app/certs/global-bundle.pem"
+      },
+      {
         "name": "WORKER_Configuration__DatabaseName",
         "value": "${mongodb_dbname}"
       }
