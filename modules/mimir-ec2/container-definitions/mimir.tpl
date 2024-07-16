@@ -9,6 +9,10 @@
       {
         "name": "Database__Database",
         "value": "${mongodb_dbname}"
+      },
+      {
+        "name": "Database__CAFile",
+        "value": "/app/certs/global-bundle.pem"
       }
     ],
     "secrets": [
