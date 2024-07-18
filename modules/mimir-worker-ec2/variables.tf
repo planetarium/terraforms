@@ -71,6 +71,16 @@ variable "network" {
   default     = "heimdall"
 }
 
+variable "poller_type" {
+  description = "poller_type"
+  type        = string
+}
+
+variable "short_poller_type" {
+  description = "short_poller_type"
+  type        = string
+}
+
 variable "use_jwt" {
   description = "Flag to include JWT related secrets"
   type        = bool
@@ -78,5 +88,5 @@ variable "use_jwt" {
 }
 
 locals {
-  kebab_case_prefix = "${var.cluster_name}-worker-${var.network}-${var.environment}"
+  kebab_case_prefix = "${var.cluster_name}-worker-${var.network}-${var.short_poller_type}-${var.environment}"
 }

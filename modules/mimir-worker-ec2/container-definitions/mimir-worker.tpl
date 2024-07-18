@@ -11,12 +11,16 @@
         "value": "Warning"
       },
       {
+        "name": "WORKER_Configuration__ActivePollers__0",
+        "value": "${poller_type}"
+      },
+      {
         "name": "WORKER_Configuration__EnableInitializing",
         "value": "true"
       },
       {
         "name": "WORKER_Configuration__MongoDbCAFile",
-        "value": "/app/certs/global-bundle.pem"
+        "value": "/app/certs/global-bundle.p7b"
       },
       {
         "name": "WORKER_Configuration__DatabaseName",

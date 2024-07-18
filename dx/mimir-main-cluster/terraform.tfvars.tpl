@@ -1,8 +1,8 @@
 cluster_name = "mimir-main"
 region = "us-east-2"
 environment = "prod"
-mimir_image = "git-7296964a8a44a440b4bca99d6af6749c1217b694"
-mimir_worker_image = "git-7296964a8a44a440b4bca99d6af6749c1217b694"
+mimir_image = "git-be7849dba2904f5812f0f184cd56e09090d527e9"
+mimir_worker_image = "git-4ca544047e7bc3e60ed39eed0825e9cef9e83815"
 existing_vpc_id = "op://DX/DX Ecs Cluster tfvars/add more/vpc_id"
 vpc_cidr_block = "10.0.0.0/16"
 existing_subnet_ids_public = op://DX/DX Ecs Cluster tfvars/add more/existing_subnet_ids_public

@@ -2,7 +2,7 @@ module "mimir_odin_ec2" {
   source = "../../modules/mimir-ec2"
 
   cpu            = 1024
-  memory         = 1900
+  memory         = 950
   vpc_id         = local.vpc_id
   cluster_id     = aws_ecs_cluster.ecs_cluster.id
   cluster_name   = var.cluster_name
@@ -19,7 +19,7 @@ module "mimir_heimdall_ec2" {
   source = "../../modules/mimir-ec2"
 
   cpu            = 1024
-  memory         = 1900
+  memory         = 950
   vpc_id         = local.vpc_id
   cluster_id     = aws_ecs_cluster.ecs_cluster.id
   cluster_name   = var.cluster_name

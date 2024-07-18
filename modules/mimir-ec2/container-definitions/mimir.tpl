@@ -12,7 +12,7 @@
       },
       {
         "name": "Database__CAFile",
-        "value": "/app/certs/global-bundle.pem"
+        "value": "/app/certs/global-bundle.p7b"
       }
     ],
     "secrets": [

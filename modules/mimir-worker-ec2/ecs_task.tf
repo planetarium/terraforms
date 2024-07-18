@@ -23,6 +23,7 @@ resource "aws_ecs_task_definition" "ecs_task" {
     jwt_headless_endpoint        = "${aws_secretsmanager_secret.secret.arn}:jwt_headless_endpoint::"
     sentry_dsn                   = "${aws_secretsmanager_secret.secret.arn}:sentry_dsn::"
     mongodb_dbname               = var.network
+    poller_type                  = var.poller_type
     jwt_secrets                  = local.jwt_secrets
   })
 }

@@ -1,7 +1,7 @@
 resource "aws_launch_template" "mimir_lt" {
   name_prefix   = "${local.kebab_case_prefix}-mimir-instance-"
   image_id      = data.aws_ssm_parameter.ecs_ami.value
-  instance_type = "c7g.large"
+  instance_type = "t4g.small"
 
   key_name               = aws_key_pair.key_pair.key_name
   vpc_security_group_ids = [aws_security_group.mimir_sg.id]
