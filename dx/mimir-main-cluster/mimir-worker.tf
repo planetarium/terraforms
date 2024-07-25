@@ -15,6 +15,7 @@ module "mimir_worker_odin_diff_ec2" {
   network                    = "odin"
   poller_type                = "DiffBlockPoller"
   short_poller_type          = "diff"
+  use_jwt                    = false
 }
 
 module "mimir_worker_odin_action_ec2" {
@@ -34,6 +35,7 @@ module "mimir_worker_odin_action_ec2" {
   network                    = "odin"
   poller_type                = "BlockPoller"
   short_poller_type          = "action"
+  use_jwt                    = false
 }
 
 module "mimir_worker_heimdall_diff_ec2" {
@@ -53,6 +55,7 @@ module "mimir_worker_heimdall_diff_ec2" {
   network                    = "heimdall"
   poller_type                = "DiffBlockPoller"
   short_poller_type          = "diff"
+  use_jwt                    = false
 }
 
 module "mimir_worker_heimdall_action_ec2" {
@@ -72,4 +75,5 @@ module "mimir_worker_heimdall_action_ec2" {
   network                    = "heimdall"
   poller_type                = "BlockPoller"
   short_poller_type          = "action"
+  use_jwt                    = false
 }
