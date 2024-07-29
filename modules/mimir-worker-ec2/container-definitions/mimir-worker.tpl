@@ -32,6 +32,10 @@
         "name": "WORKER_Configuration__MongoDbConnectionString",
         "valueFrom": "${mongodb_db_connection_string}"
       },
+      {
+        "name": "WORKER_Configuration__SentryDsn",
+        "valueFrom": "${sentry_dsn}"
+      },
       %{ for secret in jwt_secrets ~}
       {
         "name": "${secret.name}",
