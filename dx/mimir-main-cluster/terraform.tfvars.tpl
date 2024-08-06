@@ -1,12 +1,12 @@
 cluster_name = "mimir-main"
 region = "us-east-2"
 environment = "prod"
-mimir_image = "git-70d53e7dda702d2d8c3ca7433d7225c5bd24b2dc"
-mimir_worker_image = "git-70d53e7dda702d2d8c3ca7433d7225c5bd24b2dc"
+mimir_image = "git-5f3ab000c710865d70edd0ffdadd1f8f84d7189a"
+mimir_worker_image = "git-264269d12bd27f912207984e0cff49d4aec3197c"
 existing_vpc_id = "op://DX/DX Ecs Cluster tfvars/add more/vpc_id"
 vpc_cidr_block = "10.0.0.0/16"
 existing_subnet_ids_public = op://DX/DX Ecs Cluster tfvars/add more/existing_subnet_ids_public
 existing_subnet_ids_private = op://DX/DX Ecs Cluster tfvars/add more/existing_subnet_ids_private
-existing_internet_gateway_id = op://DX/DX Ecs Cluster tfvars/add more/existing_internet_gateway_id
-db_username = op://DX/DX Ecs Cluster tfvars/add more/db_username
+existing_internet_gateway_id = "op://DX/DX Ecs Cluster tfvars/add more/existing_internet_gateway_id"
+db_username = "op://DX/DX Ecs Cluster tfvars/add more/db_username"
 create_route_tables = true
