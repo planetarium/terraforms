@@ -65,10 +65,9 @@ variable "environment" {
   default     = "dev"
 }
 
-variable "network" {
-  description = "The network name (e.g., odin, heimdall)"
+variable "planet_type" {
+  description = "The planet type (e.g., odin, heimdall)"
   type        = string
-  default     = "heimdall"
 }
 
 variable "poller_type" {
@@ -81,6 +80,11 @@ variable "short_poller_type" {
   type        = string
 }
 
+variable "headless_endpoints" {
+  description = "headless_endpoints"
+  type        = list(string)
+}
+
 variable "use_jwt" {
   description = "Flag to include JWT related secrets"
   type        = bool
@@ -88,5 +92,5 @@ variable "use_jwt" {
 }
 
 locals {
-  kebab_case_prefix = "${var.cluster_name}-worker-${var.network}-${var.short_poller_type}-${var.environment}"
+  kebab_case_prefix = "${var.cluster_name}-worker-${var.planet_type}-${var.short_poller_type}-${var.environment}"
 }

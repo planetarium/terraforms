@@ -1,7 +1,7 @@
 resource "aws_launch_template" "mimir_worker_lt" {
   name_prefix   = "${local.kebab_case_prefix}-mimir-worker-instance-"
   image_id      = data.aws_ssm_parameter.ecs_ami.value
-  instance_type = "t4g.medium"
+  instance_type = "t4g.small"
 
   key_name               = aws_key_pair.key_pair.key_name
   vpc_security_group_ids = [aws_security_group.mimir_worker_sg.id]
@@ -36,8 +36,8 @@ resource "aws_launch_template" "mimir_worker_lt" {
 resource "aws_autoscaling_group" "mimir_worker_asg" {
   name_prefix               = "${local.kebab_case_prefix}-mimir-worker-instance-"
   vpc_zone_identifier       = local.private_subnet_ids
-  max_size                  = 3
-  min_size                  = 2
+  max_size                  = 6
+  min_size                  = 3
   health_check_grace_period = 0
   health_check_type         = "EC2"
   protect_from_scale_in     = false

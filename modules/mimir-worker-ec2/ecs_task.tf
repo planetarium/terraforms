@@ -20,9 +20,8 @@ resource "aws_ecs_task_definition" "ecs_task" {
     log_group_name               = aws_cloudwatch_log_group.log_group.name
     aws_region                   = var.region
     mongodb_db_connection_string = "${aws_secretsmanager_secret.secret.arn}:mongodb_db_connection_string::"
-    jwt_headless_endpoint        = "${aws_secretsmanager_secret.secret.arn}:jwt_headless_endpoint::"
-    sentry_dsn                   = "${aws_secretsmanager_secret.secret.arn}:sentry_dsn::"
-    mongodb_dbname               = var.network
+    headless_endpoints           = var.headless_endpoints
+    planet_type                  = var.planet_type
     poller_type                  = var.poller_type
     jwt_secrets                  = local.jwt_secrets
   })

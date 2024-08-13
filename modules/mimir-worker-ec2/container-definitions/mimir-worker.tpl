@@ -10,8 +10,14 @@
         "name": "WORKER_Logging__LogLevel__System.Net.Http.HttpClient",
         "value": "Warning"
       },
+      %{ for index, endpoint in headless_endpoints ~}
       {
-        "name": "WORKER_Configuration__ActivePollers__0",
+        "name": "WORKER_Configuration__HeadlessEndpoints__${index}",
+        "value": "${endpoint}"
+      },
+      %{ endfor ~}
+      {
+        "name": "WORKER_Configuration__PollerType",
         "value": "${poller_type}"
       },
       {
@@ -23,19 +29,11 @@
         "value": "/app/certs/global-bundle.p7b"
       },
       {
-        "name": "WORKER_Configuration__DatabaseName",
-        "value": "${mongodb_dbname}"
+        "name": "WORKER_Configuration__PlanetType",
+        "value": "${planet_type}"
       }
     ],
     "secrets": [
-      {
-        "name": "WORKER_Configuration__MongoDbConnectionString",
-        "valueFrom": "${mongodb_db_connection_string}"
-      },
-      {
-        "name": "WORKER_Configuration__SentryDsn",
-        "valueFrom": "${sentry_dsn}"
-      },
       %{ for secret in jwt_secrets ~}
       {
         "name": "${secret.name}",
@@ -43,8 +41,8 @@
       },
       %{ endfor ~}
       {
-        "name": "WORKER_Configuration__HeadlessEndpoint",
-        "valueFrom": "${jwt_headless_endpoint}"
+        "name": "WORKER_Configuration__MongoDbConnectionString",
+        "valueFrom": "${mongodb_db_connection_string}"
       }
     ],
     "logConfiguration": {
