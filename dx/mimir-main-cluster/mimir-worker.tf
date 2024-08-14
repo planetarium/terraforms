@@ -26,8 +26,8 @@ module "mimir_worker_odin_diff_ec2" {
 module "mimir_worker_odin_action_ec2" {
   source = "../../modules/mimir-worker-ec2"
 
-  cpu                        = 1024
-  memory                     = 900
+  cpu                        = 2048
+  memory                     = 1800
   vpc_id                     = local.vpc_id
   cluster_id                 = aws_ecs_cluster.ecs_cluster.id
   cluster_name               = var.cluster_name
@@ -76,8 +76,8 @@ module "mimir_worker_heimdall_diff_ec2" {
 module "mimir_worker_heimdall_action_ec2" {
   source = "../../modules/mimir-worker-ec2"
 
-  cpu                        = 1024
-  memory                     = 900
+  cpu                        = 2048
+  memory                     = 1800
   vpc_id                     = local.vpc_id
   cluster_id                 = aws_ecs_cluster.ecs_cluster.id
   cluster_name               = var.cluster_name
