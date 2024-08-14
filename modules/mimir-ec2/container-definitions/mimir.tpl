@@ -29,6 +29,14 @@
       {
         "name": "StateService__HeadlessEndpoint",
         "valueFrom": "${jwt_headless_endpoint}"
+      },
+      {
+        "name": "Jwt__Issuer",
+        "valueFrom": "${rate_limit_jwt_issuer}"
+      },
+      {
+        "name": "Jwt__Key",
+        "valueFrom": "${rate_limit_jwt_key}"
       }
     ],
     "portMappings": [

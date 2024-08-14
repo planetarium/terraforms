@@ -20,6 +20,8 @@ resource "aws_ecs_task_definition" "ecs_task" {
     log_group_name            = aws_cloudwatch_log_group.log_group.name
     environment               = var.environment
     aws_region                = var.region
+    rate_limit_jwt_issuer     = "${aws_secretsmanager_secret.secret.arn}:rate_limit_jwt_issuer::"
+    rate_limit_jwt_key        = "${aws_secretsmanager_secret.secret.arn}:rate_limit_jwt_key::"
     mongodb_connection_string = "${aws_secretsmanager_secret.secret.arn}:mongodb_connection_string::"
     mongodb_dbname            = var.network
     jwt_headless_endpoint     = "${aws_secretsmanager_secret.secret.arn}:jwt_headless_endpoint::"
