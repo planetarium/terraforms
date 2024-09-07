@@ -17,7 +17,9 @@ module "mimir_worker_odin_diff_ec2" {
   short_poller_type          = "diff"
   headless_endpoints = [
     "http://9c-main-jwt.nine-chronicles.com/graphql",
-    "http://odin-full-state.nine-chronicles.com/graphql"
+    "http://odin-full-state.nine-chronicles.com/graphql",
+    "http://9c-main-rpc-1.nine-chronicles.com/graphql",
+    "http://9c-main-rpc-2.nine-chronicles.com/graphql"
   ]
 }
 
@@ -40,7 +42,9 @@ module "mimir_worker_odin_action_ec2" {
   short_poller_type          = "tx"
   headless_endpoints = [
     "http://9c-main-jwt.nine-chronicles.com/graphql",
-    "http://odin-full-state.nine-chronicles.com/graphql"
+    "http://odin-full-state.nine-chronicles.com/graphql",
+    "http://9c-main-rpc-1.nine-chronicles.com/graphql",
+    "http://9c-main-rpc-2.nine-chronicles.com/graphql"
   ]
 }
 
@@ -63,7 +67,9 @@ module "mimir_worker_heimdall_diff_ec2" {
   short_poller_type          = "diff"
   headless_endpoints = [
     "http://heimdall-jwt.nine-chronicles.com/graphql",
-    "http://heimdall-full-state.nine-chronicles.com/graphql"
+    "http://heimdall-full-state.nine-chronicles.com/graphql",
+    "http://heimdall-rpc-1.nine-chronicles.com/graphql",
+    "http://heimdall-rpc-2.nine-chronicles.com/graphql"
   ]
 }
 
@@ -86,6 +92,8 @@ module "mimir_worker_heimdall_action_ec2" {
   short_poller_type          = "tx"
   headless_endpoints = [
     "http://heimdall-jwt.nine-chronicles.com/graphql",
-    "http://heimdall-full-state.nine-chronicles.com/graphql"
+    "http://heimdall-full-state.nine-chronicles.com/graphql",
+    "http://heimdall-rpc-1.nine-chronicles.com/graphql",
+    "http://heimdall-rpc-2.nine-chronicles.com/graphql"
   ]
 }
