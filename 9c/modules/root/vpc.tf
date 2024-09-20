@@ -20,8 +20,8 @@ resource "aws_internet_gateway" "default" {
 }
 
 resource "aws_eip" "nat" {
-  count = var.create_vpc ? 1 : 0
-  domain   = "vpc"
+  count  = var.create_vpc ? 1 : 0
+  domain = "vpc"
 
   lifecycle {
     create_before_destroy = true
@@ -100,10 +100,10 @@ resource "aws_subnet" "private" {
   availability_zone = each.key
 
   tags = {
-    Name               = "private-${each.key}-${var.vpc_name}"
-    immutable_metadata = "{ \"purpose\": \"internal_${var.vpc_name}\", \"target\": null }"
-    Network            = "Private"
-    "kubernetes.io/role/internal-elb" = "1"
+    Name                                = "private-${each.key}-${var.vpc_name}"
+    immutable_metadata                  = "{ \"purpose\": \"internal_${var.vpc_name}\", \"target\": null }"
+    Network                             = "Private"
+    "kubernetes.io/role/internal-elb"   = "1"
     "kubernetes.io/cluster/${var.name}" = "shared"
   }
 }

@@ -46,13 +46,18 @@ variable "environment" {
 variable "region" {
   description = "Region"
   type        = string
-  default = "us-east-2"
+  default     = "us-east-2"
 }
 
 variable "service_name" {
   type        = string
   description = "Service name"
   default     = "mongodb"
+}
+
+variable "repository_credentials" {
+  description = "Credentials to access Docker registry"
+  type        = string
 }
 
 locals {

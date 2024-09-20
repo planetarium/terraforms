@@ -70,6 +70,11 @@ variable "mimir_graphql_url_map" {
   description = "9c-board's required environment variable"
 }
 
+variable "repository_credentials" {
+  description = "Credentials to access Docker registry"
+  type        = string
+}
+
 locals {
   kebab_case_prefix = "${var.cluster_name}-${var.environment}"
 }

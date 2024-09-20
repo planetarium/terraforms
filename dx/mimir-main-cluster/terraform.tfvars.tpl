@@ -10,3 +10,4 @@ existing_subnet_ids_private = op://DX/DX Ecs Cluster tfvars/add more/existing_su
 existing_internet_gateway_id = "op://DX/DX Ecs Cluster tfvars/add more/existing_internet_gateway_id"
 db_username = "op://DX/DX Ecs Cluster tfvars/add more/db_username"
 create_route_tables = true
+repository_credentials = "op://DX/DX Ecs Cluster tfvars/add more/repository_credentials"

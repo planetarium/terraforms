@@ -1,0 +1,29 @@
+name: Terraform
+
+on: [push, pull_request]
+
+jobs:
+  terraform-format:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: hashicorp/setup-terraform@v3
+        with:
+          terraform_version: "1.8.3"
+      - run: terraform fmt -check -recursive
+  terraform-validate:
+    strategy:
+      matrix:
+        project: ["dx/dx-cluster", "dx/mimir-main-cluster", "dx/mimir-internal-cluster"]
+    runs-on: ubuntu-latest
+    name: "terraform-validate (${{ matrix.project }})"
+    steps:
+      - uses: actions/checkout@v4
+      - uses: hashicorp/setup-terraform@v3
+        with:
+          terraform_version: "1.8.3"
+      - run: |
+          set -ev
+          terraform init -backend=false
+          terraform validate
+        working-directory: ${{ matrix.project }}

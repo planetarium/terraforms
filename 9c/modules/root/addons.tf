@@ -27,8 +27,8 @@ resource "aws_eks_addon" "vpc_cni" {
   addon_name    = "vpc-cni"
   addon_version = var.addon_versions["vpc_cni"]
 
-  service_account_role_arn = aws_iam_role.cni_irsa_role.arn
-  resolve_conflicts_on_create        = "OVERWRITE"
+  service_account_role_arn    = aws_iam_role.cni_irsa_role.arn
+  resolve_conflicts_on_create = "OVERWRITE"
   depends_on = [
     aws_eks_node_group.node_groups,
   ]
@@ -70,8 +70,8 @@ resource "aws_eks_addon" "ebs_csi_driver" {
   addon_name    = "aws-ebs-csi-driver"
   addon_version = var.addon_versions["aws_ebs_csi_driver"]
 
-  service_account_role_arn = aws_iam_role.ebs_csi_irsa_role.arn
-  resolve_conflicts_on_create        = "OVERWRITE"
+  service_account_role_arn    = aws_iam_role.ebs_csi_irsa_role.arn
+  resolve_conflicts_on_create = "OVERWRITE"
   depends_on = [
     aws_eks_node_group.node_groups,
   ]

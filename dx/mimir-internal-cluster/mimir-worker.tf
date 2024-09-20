@@ -12,10 +12,14 @@ module "mimir_worker_odin_diff_ec2" {
   private_subnets            = local.private_subnet_ids
   ecs_capacity_provider_name = aws_ecs_capacity_provider.mimir_worker_capacity_provider.name
   environment                = "prod"
-  network                    = "odin"
+  planet_type                = "odin"
   poller_type                = "DiffPoller"
   short_poller_type          = "diff"
   use_jwt                    = false
+  repository_credentials     = var.repository_credentials
+  headless_endpoints = [
+    "https://9c-internal-rpc-1.nine-chronicles.com/graphql"
+  ]
 }
 
 module "mimir_worker_odin_action_ec2" {
@@ -32,10 +36,14 @@ module "mimir_worker_odin_action_ec2" {
   private_subnets            = local.private_subnet_ids
   ecs_capacity_provider_name = aws_ecs_capacity_provider.mimir_worker_capacity_provider.name
   environment                = "prod"
-  network                    = "odin"
+  planet_type                = "odin"
   poller_type                = "TxPoller"
   short_poller_type          = "action"
   use_jwt                    = false
+  repository_credentials     = var.repository_credentials
+  headless_endpoints = [
+    "https://9c-internal-rpc-1.nine-chronicles.com/graphql"
+  ]
 }
 
 module "mimir_worker_heimdall_diff_ec2" {
@@ -52,10 +60,14 @@ module "mimir_worker_heimdall_diff_ec2" {
   private_subnets            = local.private_subnet_ids
   ecs_capacity_provider_name = aws_ecs_capacity_provider.mimir_worker_capacity_provider.name
   environment                = "prod"
-  network                    = "heimdall"
+  planet_type                = "heimdall"
   poller_type                = "DiffPoller"
   short_poller_type          = "diff"
   use_jwt                    = false
+  repository_credentials     = var.repository_credentials
+  headless_endpoints = [
+    "https://heimdall-internal-rpc-1.nine-chronicles.com/graphql"
+  ]
 }
 
 module "mimir_worker_heimdall_action_ec2" {
@@ -72,8 +84,12 @@ module "mimir_worker_heimdall_action_ec2" {
   private_subnets            = local.private_subnet_ids
   ecs_capacity_provider_name = aws_ecs_capacity_provider.mimir_worker_capacity_provider.name
   environment                = "prod"
-  network                    = "heimdall"
+  planet_type                = "heimdall"
   poller_type                = "TxPoller"
   short_poller_type          = "action"
   use_jwt                    = false
+  repository_credentials     = var.repository_credentials
+  headless_endpoints = [
+    "https://heimdall-internal-rpc-1.nine-chronicles.com/graphql"
+  ]
 }

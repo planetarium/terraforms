@@ -2,7 +2,7 @@ resource "aws_ecs_capacity_provider" "ecs_capacity_provider" {
   name = "${local.kebab_case_prefix}-ecs-capacity-provider"
 
   auto_scaling_group_provider {
-    auto_scaling_group_arn = aws_autoscaling_group.asg.arn
+    auto_scaling_group_arn         = aws_autoscaling_group.asg.arn
     managed_termination_protection = "DISABLED"
 
     managed_scaling {

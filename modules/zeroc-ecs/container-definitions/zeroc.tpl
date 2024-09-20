@@ -2,6 +2,9 @@
   {
     "name": "${container_name}",
     "image": "docker.io/planetariumhq/emptychronicle:${image}",
+    "repositoryCredentials": {
+      "credentialsParameter": "{repository_credentials}"
+    },
     "cpu": ${cpu},
     "memory": ${memory},
     "essential": true,

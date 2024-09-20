@@ -3,7 +3,7 @@ resource "random_string" "db_password" {
   special = true
   upper   = true
   lower   = true
-  numeric  = true
+  numeric = true
 }
 
 resource "aws_secretsmanager_secret" "secret" {
@@ -12,7 +12,7 @@ resource "aws_secretsmanager_secret" "secret" {
 }
 
 resource "aws_secretsmanager_secret_version" "secret_version" {
-  secret_id     = aws_secretsmanager_secret.secret.id
+  secret_id = aws_secretsmanager_secret.secret.id
   secret_string = jsonencode({
     username = "planetarium"
     password = random_string.db_password.result
