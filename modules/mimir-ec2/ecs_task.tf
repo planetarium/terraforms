@@ -15,6 +15,7 @@ resource "aws_ecs_task_definition" "ecs_task" {
   container_definitions = templatefile("${path.module}/container-definitions/mimir.tpl", {
     container_name            = local.kebab_case_prefix
     image                     = var.image_tag
+    repository_credentials    = var.repository_credentials
     cpu                       = var.cpu
     memory                    = var.memory
     log_group_name            = aws_cloudwatch_log_group.log_group.name

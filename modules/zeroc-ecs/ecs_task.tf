@@ -18,13 +18,6 @@ resource "aws_ecs_task_definition" "ecs_task" {
   }
 
   container_definitions = templatefile("${path.module}/container-definitions/zeroc.tpl", {
-    image          = var.image_tag
-    cpu            = var.cpu
-    memory         = var.memory
-    container_name = var.service_name
-    cluster_name   = var.cluster_name
-    log_group_name = aws_cloudwatch_log_group.log_group.name
-    environment    = var.environment
-    aws_region     = var.region
+    repository_credentials = var.repository_credentials
   })
 }

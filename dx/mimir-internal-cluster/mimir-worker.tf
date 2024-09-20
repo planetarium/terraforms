@@ -16,6 +16,7 @@ module "mimir_worker_odin_diff_ec2" {
   poller_type                = "DiffPoller"
   short_poller_type          = "diff"
   use_jwt                    = false
+  repository_credentials     = var.repository_credentials
 }
 
 module "mimir_worker_odin_action_ec2" {
@@ -36,6 +37,7 @@ module "mimir_worker_odin_action_ec2" {
   poller_type                = "TxPoller"
   short_poller_type          = "action"
   use_jwt                    = false
+  repository_credentials     = var.repository_credentials
 }
 
 module "mimir_worker_heimdall_diff_ec2" {
@@ -56,6 +58,7 @@ module "mimir_worker_heimdall_diff_ec2" {
   poller_type                = "DiffPoller"
   short_poller_type          = "diff"
   use_jwt                    = false
+  repository_credentials     = var.repository_credentials
 }
 
 module "mimir_worker_heimdall_action_ec2" {
@@ -76,4 +79,5 @@ module "mimir_worker_heimdall_action_ec2" {
   poller_type                = "TxPoller"
   short_poller_type          = "action"
   use_jwt                    = false
+  repository_credentials     = var.repository_credentials
 }

@@ -11,8 +11,7 @@ module "mimir_odin_ec2" {
   public_subnets = local.public_subnet_ids
   private_subnets = local.private_subnet_ids
   ecs_capacity_provider_name = aws_ecs_capacity_provider.mimir_capacity_provider.name
-  network        = "odin"
-  environment    = "prod"
+  repository_credentials     = var.repository_credentials
 }
 
 module "mimir_heimdall_ec2" {
@@ -28,6 +27,5 @@ module "mimir_heimdall_ec2" {
   public_subnets = local.public_subnet_ids
   private_subnets = local.private_subnet_ids
   ecs_capacity_provider_name = aws_ecs_capacity_provider.mimir_capacity_provider.name
-  network        = "heimdall"
-  environment    = "prod"
+  repository_credentials     = var.repository_credentials
 }

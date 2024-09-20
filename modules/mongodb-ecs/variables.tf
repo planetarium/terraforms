@@ -55,6 +55,11 @@ variable "service_name" {
   default     = "mongodb"
 }
 
+variable "repository_credentials" {
+  description = "Credentials to access Docker registry"
+  type        = string
+}
+
 locals {
   kebab_case_prefix = "${var.cluster_name}-${var.service_name}-${var.environment}"
 }

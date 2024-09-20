@@ -22,6 +22,11 @@ variable "image_tag" {
   default     = "git-aa7e94562660561a24565f5581396c4fffdf1336"
 }
 
+variable "repository_credentials" {
+  description = "Credentials to access Docker registry"
+  type        = string
+}
+
 variable "vpc_id" {
   description = "The VPC ID where the security group will be created"
   type        = string
