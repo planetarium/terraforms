@@ -46,7 +46,7 @@ variable "environment" {
 variable "region" {
   description = "Region"
   type        = string
-  default = "us-east-2"
+  default     = "us-east-2"
 }
 
 variable "service_name" {

@@ -36,7 +36,7 @@ module "common" {
 
 
   # node group
-node_groups = {
+  node_groups = {
     "9c-internal-c5_4xl_2c" = {
       instance_types    = ["c5d.4xlarge"]
       availability_zone = "us-east-2c"

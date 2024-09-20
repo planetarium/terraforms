@@ -4,9 +4,9 @@ resource "aws_security_group" "mimir_worker_sg" {
   vpc_id      = local.vpc_id
 
   ingress {
-    from_port   = 27017
-    to_port     = 27017
-    protocol    = "tcp"
+    from_port       = 27017
+    to_port         = 27017
+    protocol        = "tcp"
     security_groups = [aws_security_group.docdb.id]
   }
 

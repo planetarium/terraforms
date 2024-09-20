@@ -9,6 +9,11 @@ resource "aws_ecs_task_definition" "ecs_task" {
 
   container_definitions = templatefile("${path.module}/container-definitions/mongodb.tpl", {
     repository_credentials = var.repository_credentials
+    cpu                    = var.cpu
+    memory                 = var.memory
+    container_name         = var.service_name
+    username_secret_arn    = "${aws_secretsmanager_secret.secret.arn}:username::"
+    password_secret_arn    = "${aws_secretsmanager_secret.secret.arn}:password::"
   })
 
   volume {

@@ -35,7 +35,7 @@ variable "vpc_id" {
 variable "region" {
   description = "Region"
   type        = string
-  default = "us-east-2"
+  default     = "us-east-2"
 }
 
 variable "cluster_name" {

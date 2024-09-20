@@ -11,10 +11,10 @@ resource "aws_lb" "nlb" {
 }
 
 resource "aws_lb_target_group" "tg" {
-  name     = "${local.kebab_case_prefix}-ecs-tg"
-  port     = 27017
-  protocol = "TCP"
-  vpc_id   = var.vpc_id
+  name        = "${local.kebab_case_prefix}-ecs-tg"
+  port        = 27017
+  protocol    = "TCP"
+  vpc_id      = var.vpc_id
   target_type = "ip"
 
 }

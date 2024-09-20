@@ -59,7 +59,7 @@ variable "node_groups" {
       desired_size      = 10
       min_size          = 10
       max_size          = 20
-      taints = []
+      taints            = []
     }
   }
 }
@@ -85,7 +85,7 @@ variable "min_size" {
 
 variable "addon_versions" {
   description = "List of Addon versions"
-  default     = {
+  default = {
     "coredns"            = "v1.8.7-eksbuild.1"
     "kube-proxy"         = "v1.22.6-eksbuild.1"
     "vpc_cni"            = "v1.11.0-eksbuild.1"

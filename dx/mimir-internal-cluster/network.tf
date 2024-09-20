@@ -52,7 +52,7 @@ resource "aws_nat_gateway" "main" {
 }
 
 resource "aws_internet_gateway" "main" {
-  count = var.create_internet_gateway ? 1 : 0
+  count  = var.create_internet_gateway ? 1 : 0
   vpc_id = local.vpc_id
   tags   = { Name = "${local.kebab_case_prefix}-ecs-igw" }
 }
@@ -62,7 +62,7 @@ locals {
 }
 
 resource "aws_route_table" "public" {
-  count = var.create_route_tables ? 1 : 0
+  count  = var.create_route_tables ? 1 : 0
   vpc_id = local.vpc_id
   tags   = { Name = "${local.kebab_case_prefix}-ecs-rt-public" }
 
@@ -83,7 +83,7 @@ resource "aws_route_table_association" "public" {
 }
 
 resource "aws_route_table" "private" {
-  count = var.create_route_tables ? 1 : 0
+  count  = var.create_route_tables ? 1 : 0
   vpc_id = local.vpc_id
   tags   = { Name = "${local.kebab_case_prefix}-ecs-rt-private" }
 
