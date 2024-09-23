@@ -2,11 +2,6 @@
 set -e
 
 if command -v terraform > /dev/null; then
-  if [[ "$BYPASS_PRE_COMMIT" = "true" ]]; then
-    echo "info: pre-commit is bypassed." >&2
-    exit 0
-  fi
-
   terraform fmt -check -recursive
 
   PROJECTS=(dx/dx-cluster dx/mimir-main-cluster dx/mimir-internal-cluster)
