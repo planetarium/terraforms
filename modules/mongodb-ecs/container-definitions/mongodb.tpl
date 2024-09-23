@@ -3,7 +3,7 @@
     "name": "${container_name}",
     "image": "docker.io/mongo:latest",
     "repositoryCredentials": {
-      "credentialsParameter": "{repository_credentials}"
+      "credentialsParameter": "${repository_credentials}"
     },
     "cpu": ${cpu},
     "memory": ${memory},
