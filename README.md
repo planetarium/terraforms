@@ -6,8 +6,8 @@
 git config core.hooksPath hooks
 ```
 
-Since `pre-commit` validates Terraform styles, syntax at all, there is a flag to bypass them.
+Since the `pre-commit` hook validates Terraform styles, syntax at all, you may want to bypass it sometimes.
 
 ```sh
-BYPASS_PRE_COMMIT="true" git commit
+git --no-verify commit
 ```
