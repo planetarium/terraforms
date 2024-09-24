@@ -16,6 +16,7 @@ resource "aws_launch_template" "mimir_worker_lt" {
     resource_type = "instance"
     tags = {
       Name = "${local.kebab_case_prefix}-mimir-worker-instance"
+      Team = var.tags.Team
     }
   }
 

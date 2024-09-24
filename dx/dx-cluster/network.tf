@@ -10,7 +10,10 @@ resource "aws_vpc" "main" {
   cidr_block           = var.vpc_cidr_block
   enable_dns_hostnames = true
   enable_dns_support   = true
-  tags                 = { Name = "${local.kebab_case_prefix}-ecs-vpc" }
+  tags = {
+    Name = "${local.kebab_case_prefix}-ecs-vpc"
+    Team = var.tags.Team
+  }
 }
 
 locals {
@@ -23,7 +26,10 @@ resource "aws_subnet" "public" {
   availability_zone       = element(data.aws_availability_zones.available.names, count.index)
   cidr_block              = cidrsubnet(var.vpc_cidr_block, 8, 10 + count.index)
   map_public_ip_on_launch = true
-  tags                    = { Name = "${local.kebab_case_prefix}-ecs-public-${element(data.aws_availability_zones.available.names, count.index)}" }
+  tags = {
+    Name = "${local.kebab_case_prefix}-ecs-public-${element(data.aws_availability_zones.available.names, count.index)}"
+    Team = var.tags.Team
+  }
 }
 
 resource "aws_subnet" "private" {
@@ -31,7 +37,10 @@ resource "aws_subnet" "private" {
   vpc_id            = local.vpc_id
   availability_zone = element(data.aws_availability_zones.available.names, count.index)
   cidr_block        = cidrsubnet(var.vpc_cidr_block, 8, 20 + count.index)
-  tags              = { Name = "${local.kebab_case_prefix}-ecs-private-${element(data.aws_availability_zones.available.names, count.index)}" }
+  tags = {
+    Name = "${local.kebab_case_prefix}-ecs-private-${element(data.aws_availability_zones.available.names, count.index)}"
+    Team = var.tags.Team
+  }
 }
 
 locals {
@@ -41,12 +50,18 @@ locals {
 
 resource "aws_eip" "nat" {
   count = local.azs_count
-  tags  = { Name = "${local.kebab_case_prefix}-ecs-nat-eip-${local.azs_names[count.index]}" }
+  tags = {
+    Name = "${local.kebab_case_prefix}-ecs-nat-eip-${local.azs_names[count.index]}"
+    Team = var.tags.Team
+  }
 }
 
 resource "aws_nat_gateway" "main" {
   count         = local.azs_count
   allocation_id = aws_eip.nat[count.index].id
   subnet_id     = local.public_subnet_ids[count.index]
-  tags          = { Name = "${local.kebab_case_prefix}-ecs-nat-${local.azs_names[count.index]}" }
+  tags = {
+    Name = "${local.kebab_case_prefix}-ecs-nat-${local.azs_names[count.index]}"
+    Team = var.tags.Team
+  }
 }

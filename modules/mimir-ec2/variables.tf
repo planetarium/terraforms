@@ -81,6 +81,13 @@ variable "use_jwt" {
   default     = true
 }
 
+variable "tags" {
+  type = object({
+    Team = string
+  })
+  description = "AWS resources' tags."
+}
+
 locals {
   kebab_case_prefix = "${var.cluster_name}-${var.network}-${var.environment}"
 }

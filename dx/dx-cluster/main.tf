@@ -28,4 +28,5 @@ module "ncboard_ecs" {
   mimir_graphql_url_map  = var.mimir_graphql_url_map
   environment            = "prod"
   repository_credentials = var.repository_credentials
+  tags                   = var.tags
 }

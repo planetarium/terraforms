@@ -9,6 +9,7 @@ resource "aws_lb" "alb" {
 
   tags = {
     Name = "zeroc-alb"
+    Team = var.tags.Team
   }
 }
 

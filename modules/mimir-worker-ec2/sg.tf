@@ -12,5 +12,6 @@ resource "aws_security_group" "sg" {
 
   tags = {
     Name = "${local.kebab_case_prefix}-ecs-sg"
+    Team = var.tags.Team
   }
 }

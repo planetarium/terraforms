@@ -4,6 +4,7 @@ resource "aws_docdb_subnet_group" "docdb" {
 
   tags = {
     Name = "${local.kebab_case_prefix}-docdb-subnet-group"
+    Team = var.tags.Team
   }
 }
 
@@ -26,6 +27,7 @@ resource "aws_security_group" "docdb" {
 
   tags = {
     Name = "${local.kebab_case_prefix}-docdb-sg"
+    Team = var.tags.Team
   }
 }
 
@@ -39,6 +41,7 @@ resource "aws_docdb_cluster" "docdb" {
 
   tags = {
     Name = "${local.kebab_case_prefix}-docdb-cluster"
+    Team = var.tags.Team
   }
 }
 
@@ -50,5 +53,6 @@ resource "aws_docdb_cluster_instance" "docdb_instance" {
 
   tags = {
     Name = "${local.kebab_case_prefix}-docdb-instance-${count.index}"
+    Team = var.tags.Team
   }
 }

@@ -19,6 +19,7 @@ resource "aws_security_group" "mimir_worker_sg" {
 
   tags = {
     Name = "dx-mimir-main-ecs-cluster-mimir-worker-sg"
+    Team = var.tags.Team
   }
 }
 
@@ -43,5 +44,6 @@ resource "aws_security_group" "mimir_sg" {
 
   tags = {
     Name = "dx-mimir-main-ecs-cluster-mimir-sg"
+    Team = var.tags.Team
   }
 }
