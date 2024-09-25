@@ -31,6 +31,7 @@ resource "aws_iam_policy" "secret_read_policy" {
         Effect = "Allow",
         Resource = [
           aws_secretsmanager_secret.secret.arn,
+          var.repository_credentials,
         ]
       }
     ]
