@@ -43,10 +43,10 @@ resource "aws_docdb_cluster" "docdb" {
 }
 
 resource "aws_docdb_cluster_instance" "docdb_instance" {
-  count              = 2
+  count              = 1
   identifier         = "${local.kebab_case_prefix}-docdb-instance-${count.index}"
   cluster_identifier = aws_docdb_cluster.docdb.id
-  instance_class     = "db.t4g.medium"
+  instance_class     = "db.r6g.xlarge"
 
   tags = {
     Name = "${local.kebab_case_prefix}-docdb-instance-${count.index}"
