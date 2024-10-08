@@ -24,6 +24,7 @@ resource "aws_launch_template" "lt" {
     resource_type = "instance"
     tags = {
       Name = "${local.kebab_case_prefix}-ecs-instance"
+      Team = var.tags.Team
     }
   }
 

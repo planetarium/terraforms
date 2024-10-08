@@ -20,6 +20,7 @@ module "mimir_worker_odin_diff_ec2" {
   headless_endpoints = [
     "https://9c-internal-rpc-1.nine-chronicles.com/graphql"
   ]
+  tags = var.tags
 }
 
 module "mimir_worker_odin_action_ec2" {
@@ -44,6 +45,7 @@ module "mimir_worker_odin_action_ec2" {
   headless_endpoints = [
     "https://9c-internal-rpc-1.nine-chronicles.com/graphql"
   ]
+  tags = var.tags
 }
 
 module "mimir_worker_heimdall_diff_ec2" {
@@ -68,6 +70,7 @@ module "mimir_worker_heimdall_diff_ec2" {
   headless_endpoints = [
     "https://heimdall-internal-rpc-1.nine-chronicles.com/graphql"
   ]
+  tags = var.tags
 }
 
 module "mimir_worker_heimdall_action_ec2" {
@@ -92,4 +95,5 @@ module "mimir_worker_heimdall_action_ec2" {
   headless_endpoints = [
     "https://heimdall-internal-rpc-1.nine-chronicles.com/graphql"
   ]
+  tags = var.tags
 }

@@ -9,6 +9,7 @@ resource "aws_lb" "alb" {
 
   tags = {
     Name = "${local.kebab_case_prefix}-ecs-alb"
+    Team = var.tags.Team
   }
 }
 

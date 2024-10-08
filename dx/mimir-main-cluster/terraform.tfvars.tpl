@@ -11,3 +11,6 @@ existing_internet_gateway_id = "op://DX/DX Ecs Cluster tfvars/add more/existing_
 db_username                  = "op://DX/DX Ecs Cluster tfvars/add more/db_username"
 create_route_tables          = true
 repository_credentials       = "op://DX/DX Ecs Cluster tfvars/add more/repository_credentials"
+tags = {
+  Team = "9c-dx"
+}

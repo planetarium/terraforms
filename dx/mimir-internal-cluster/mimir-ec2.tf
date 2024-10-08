@@ -16,6 +16,7 @@ resource "aws_launch_template" "mimir_lt" {
     resource_type = "instance"
     tags = {
       Name = "${local.kebab_case_prefix}-mimir-instance"
+      Team = var.tags.Team
     }
   }
 
@@ -56,6 +57,12 @@ resource "aws_autoscaling_group" "mimir_asg" {
   tag {
     key                 = "AmazonECSManaged"
     value               = true
+    propagate_at_launch = true
+  }
+
+  tag {
+    key                 = "Team"
+    value               = var.tags.Team
     propagate_at_launch = true
   }
 }

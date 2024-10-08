@@ -15,6 +15,7 @@ module "mimir_odin_ec2" {
   environment                = "prod"
   use_jwt                    = false
   repository_credentials     = var.repository_credentials
+  tags                       = var.tags
 }
 
 module "mimir_heimdall_ec2" {
@@ -34,4 +35,5 @@ module "mimir_heimdall_ec2" {
   environment                = "prod"
   use_jwt                    = false
   repository_credentials     = var.repository_credentials
+  tags                       = var.tags
 }

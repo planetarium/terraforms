@@ -10,3 +10,6 @@ existing_subnet_ids_private = op://DX/DX Ecs Cluster tfvars/add more/existing_su
 network_conf_map            = "odin=https://9c-main-rpc-1.nine-chronicles.com/graphql,heimdall=https://heimdall-full-state.nine-chronicles.com/graphql,odin-preview=https://odin-preview-rpc-1.nine-chronicles.com/graphql,heimdall-preview=https://heimdall-preview-rpc-1-state.nine-chronicles.com/graphql,odin-internal=https://9c-internal-rpc-1.nine-chronicles.com/graphql,heimdall-internal=https://heimdall-internal-rpc-1.nine-chronicles.com/graphql"
 mimir_graphql_url_map       = "odin=https://mimir.nine-chronicles.dev/odin/graphql/,heimdall=https://mimir.nine-chronicles.dev/heimdall/graphql/"
 repository_credentials      = "op://DX/DX Ecs Cluster tfvars/add more/repository_credentials"
+tags = {
+  Team = "9c-dx"
+}

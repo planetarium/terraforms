@@ -12,3 +12,6 @@ db_username                  = op://DX/DX Ecs Cluster tfvars/add more/db_usernam
 create_route_tables          = true
 create_nat_gateways          = true
 repository_credentials       = "op://DX/DX Ecs Cluster tfvars/add more/repository_credentials"
+tags = {
+  Team = "9c-dx"
+}

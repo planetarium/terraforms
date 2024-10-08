@@ -3,6 +3,7 @@ resource "aws_secretsmanager_secret" "db_password" {
 
   tags = {
     Name = "${local.kebab_case_prefix}-docdb"
+    Team = var.tags.Team
   }
 }
 

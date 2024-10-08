@@ -19,6 +19,7 @@ resource "aws_security_group" "alb_sg" {
 
   tags = {
     Name = "${local.kebab_case_prefix}-ecs-sg"
+    Team = var.tags.Team
   }
 }
 
@@ -43,5 +44,6 @@ resource "aws_security_group" "service_sg" {
 
   tags = {
     Name = "${local.kebab_case_prefix}-ecs-service-sg"
+    Team = var.tags.Team
   }
 }
