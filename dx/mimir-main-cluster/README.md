@@ -21,7 +21,7 @@ existing_subnet_ids_public = "op://DX/DX Ecs Cluster tfvars/add more/existing_su
 ### 2. Inject Secrets with 1Password
 
 Before running any Terraform commands, you need to inject secrets into your configuration. This is done using the `op` command-line tool and the provided script.
-The script replaces placeholders in `terraform.tfvars.tpl` with actual secrets from 1Password and outputs the result to `terraform.tfvars`.
+The script replaces placeholders in `terraform-private.tfvars.tpl` with actual secrets from 1Password and outputs the result to `terraform-private.tfvars`.
 
 Run the following command in your terminal:
 
