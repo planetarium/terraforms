@@ -75,6 +75,13 @@ variable "mimir_graphql_url_map" {
   description = "MIMIR_GRAPHQL_URL_MAP environment variable"
 }
 
+variable "tags" {
+  type = object({
+    Team = string
+  })
+  description = "AWS resources' tags."
+}
+
 locals {
   kebab_case_prefix = "${var.cluster_name}-${var.service_name}-${var.environment}"
 }

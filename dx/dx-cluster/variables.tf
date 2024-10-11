@@ -75,6 +75,13 @@ variable "repository_credentials" {
   type        = string
 }
 
+variable "tags" {
+  type = object({
+    Team = string
+  })
+  description = "AWS resources' tags."
+}
+
 locals {
   kebab_case_prefix = "${var.cluster_name}-${var.environment}"
 }
