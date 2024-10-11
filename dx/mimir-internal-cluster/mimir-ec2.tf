@@ -36,8 +36,8 @@ resource "aws_launch_template" "mimir_lt" {
 resource "aws_autoscaling_group" "mimir_asg" {
   name_prefix               = "${local.kebab_case_prefix}-mimir-instance-"
   vpc_zone_identifier       = local.private_subnet_ids
-  max_size                  = 4
-  min_size                  = 2
+  max_size                  = 2
+  min_size                  = 1
   health_check_grace_period = 0
   health_check_type         = "EC2"
   protect_from_scale_in     = false
