@@ -26,7 +26,7 @@ The script replaces placeholders in `terraform.tfvars.tpl` with actual secrets f
 Run the following command in your terminal:
 
 ```bash
-op inject -i terraform.tfvars.tpl -o terraform.tfvars
+op inject -i terraform-private.tfvars.tpl -o terraform-private.tfvars
 ```
 
 This command reads the template file `terraform.tfvars.tpl`, injects secrets from 1Password, and writes the output to `terraform.tfvars`.
@@ -36,11 +36,11 @@ This command reads the template file `terraform.tfvars.tpl`, injects secrets fro
 After injecting the secrets, you can proceed with Terraform commands. For example, to plan your infrastructure changes, you can run:
 
 ```bash
-terraform plan
+terraform plan -var-file=<(cat terraform-public.tfvars terraform-private.tfvars)
 ```
 
 For convenience, you can combine the secrets injection and Terraform planning into one command:
 
 ```bash
-op inject -i terraform.tfvars.tpl -o terraform.tfvars && terraform plan
+op inject -i terraform-private.tfvars.tpl -o terraform-private.tfvars && terraform plan -var-file=<(cat terraform-public.tfvars terraform-private.tfvars)
 ```
