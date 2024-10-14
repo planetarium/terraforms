@@ -44,5 +44,11 @@ locals {
       valueFrom = "${aws_secretsmanager_secret.secret.arn}:mongodb_db_connection_string::"
     }
   ]
-  secrets = concat(local.jwt_secrets, local.mongodb_secrets)
+  sentry_secrets = var.use_sentry ? [
+    {
+      name      = "Sentry__Dsn",
+      valueFrom = "${aws_secretsmanager_secret.secret.arn}:sentry_dsn::"
+    }
+  ] : []
+  secrets = concat(local.jwt_secrets, local.mongodb_secrets, local.sentry_secrets)
 }
