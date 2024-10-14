@@ -14,6 +14,7 @@ module "mimir_odin_ec2" {
   network                    = "odin"
   environment                = "prod"
   repository_credentials     = var.repository_credentials
+  use_sentry                 = true
 }
 
 module "mimir_heimdall_ec2" {
@@ -32,4 +33,5 @@ module "mimir_heimdall_ec2" {
   network                    = "heimdall"
   environment                = "prod"
   repository_credentials     = var.repository_credentials
+  use_sentry                 = true
 }
