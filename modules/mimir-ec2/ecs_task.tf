@@ -13,20 +13,16 @@ resource "aws_ecs_task_definition" "ecs_task" {
   }
 
   container_definitions = templatefile("${path.module}/container-definitions/mimir.tpl", {
-    container_name            = local.kebab_case_prefix
-    image                     = var.image_tag
-    repository_credentials    = var.repository_credentials
-    cpu                       = var.cpu
-    memory                    = var.memory
-    log_group_name            = aws_cloudwatch_log_group.log_group.name
-    environment               = var.environment
-    aws_region                = var.region
-    rate_limit_jwt_issuer     = "${aws_secretsmanager_secret.secret.arn}:rate_limit_jwt_issuer::"
-    rate_limit_jwt_key        = "${aws_secretsmanager_secret.secret.arn}:rate_limit_jwt_key::"
-    mongodb_connection_string = "${aws_secretsmanager_secret.secret.arn}:mongodb_connection_string::"
-    mongodb_dbname            = var.network
-    jwt_headless_endpoint     = "${aws_secretsmanager_secret.secret.arn}:jwt_headless_endpoint::"
-    jwt_secrets               = local.jwt_secrets
+    container_name         = local.kebab_case_prefix
+    image                  = var.image_tag
+    repository_credentials = var.repository_credentials
+    cpu                    = var.cpu
+    memory                 = var.memory
+    log_group_name         = aws_cloudwatch_log_group.log_group.name
+    environment            = var.environment
+    aws_region             = var.region
+    mongodb_dbname         = var.network
+    secrets                = local.secrets
   })
 }
 
@@ -39,6 +35,25 @@ locals {
     {
       name      = "StateService__JwtIssuer",
       valueFrom = "${aws_secretsmanager_secret.secret.arn}:jwt_issuer::"
-    }
+    },
+    {
+      name      = "Jwt__Issuer",
+      valueFrom = "${aws_secretsmanager_secret.secret.arn}:rate_limit_jwt_issuer::"
+    },
+    {
+      name      = "Jwt__Key",
+      valueFrom = "${aws_secretsmanager_secret.secret.arn}:rate_limit_jwt_key::"
+    },
+    {
+      name      = "StateService__HeadlessEndpoint",
+      valueFrom = "${aws_secretsmanager_secret.secret.arn}:jwt_headless_endpoint::"
+    },
   ] : []
+  mongodb_secrets = [
+    {
+      name      = "Database__ConnectionString",
+      valueFrom = "${aws_secretsmanager_secret.secret.arn}:mongodb_connection_string::"
+    },
+  ]
+  secrets = concat(local.jwt_secrets, local.mongodb_secrets)
 }

@@ -36,18 +36,7 @@
         "value": "${planet_type}"
       }
     ],
-    "secrets": [
-      %{ for secret in jwt_secrets ~}
-      {
-        "name": "${secret.name}",
-        "valueFrom": "${secret.valueFrom}"
-      },
-      %{ endfor ~}
-      {
-        "name": "WORKER_Configuration__MongoDbConnectionString",
-        "valueFrom": "${mongodb_db_connection_string}"
-      }
-    ],
+    "secrets": ${jsonencode(secrets)},
     "logConfiguration": {
       "logDriver": "awslogs",
       "options": {
