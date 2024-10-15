@@ -81,6 +81,12 @@ variable "use_jwt" {
   default     = true
 }
 
+variable "use_sentry" {
+  description = "Flag to include Sentry related secrets. In other words, it enables Sentry."
+  type        = bool
+  default     = false
+}
+
 locals {
   kebab_case_prefix = "${var.cluster_name}-${var.network}-${var.environment}"
 }
