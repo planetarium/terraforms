@@ -13,18 +13,17 @@ resource "aws_ecs_task_definition" "ecs_task" {
   }
 
   container_definitions = templatefile("${path.module}/container-definitions/mimir-worker.tpl", {
-    image                        = var.image_tag
-    repository_credentials       = var.repository_credentials
-    cpu                          = var.cpu
-    memory                       = var.memory
-    container_name               = local.kebab_case_prefix
-    log_group_name               = aws_cloudwatch_log_group.log_group.name
-    aws_region                   = var.region
-    mongodb_db_connection_string = "${aws_secretsmanager_secret.secret.arn}:mongodb_db_connection_string::"
-    headless_endpoints           = var.headless_endpoints
-    planet_type                  = var.planet_type
-    poller_type                  = var.poller_type
-    jwt_secrets                  = local.jwt_secrets
+    image                  = var.image_tag
+    repository_credentials = var.repository_credentials
+    cpu                    = var.cpu
+    memory                 = var.memory
+    container_name         = local.kebab_case_prefix
+    log_group_name         = aws_cloudwatch_log_group.log_group.name
+    aws_region             = var.region
+    headless_endpoints     = var.headless_endpoints
+    planet_type            = var.planet_type
+    poller_type            = var.poller_type
+    secrets                = local.secrets
   })
 }
 
@@ -39,4 +38,11 @@ locals {
       valueFrom = "${aws_secretsmanager_secret.secret.arn}:jwt_issuer::"
     }
   ] : []
+  mongodb_secrets = [
+    {
+      name      = "WORKER_Configuration__MongoDbConnectionString"
+      valueFrom = "${aws_secretsmanager_secret.secret.arn}:mongodb_db_connection_string::"
+    }
+  ]
+  secrets = concat(local.jwt_secrets, local.mongodb_secrets)
 }
