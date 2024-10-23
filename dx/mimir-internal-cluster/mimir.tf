@@ -1,4 +1,4 @@
-module "mimir_odin_ec2" {
+module "mimir_heimdall_ec2" {
   source = "../../modules/mimir-ec2"
 
   cpu                        = 1024
@@ -11,7 +11,7 @@ module "mimir_odin_ec2" {
   public_subnets             = local.public_subnet_ids
   private_subnets            = local.private_subnet_ids
   ecs_capacity_provider_name = aws_ecs_capacity_provider.mimir_capacity_provider.name
-  network                    = "odin"
+  network                    = "heimdall"
   environment                = "stag"
   repository_credentials     = var.repository_credentials
 }
