@@ -1,4 +1,4 @@
-module "mimir_worker_odin_diff_ec2" {
+module "mimir_worker_heimdall_diff_ec2" {
   source = "../../modules/mimir-worker-ec2"
 
   cpu                        = 2048
@@ -12,17 +12,17 @@ module "mimir_worker_odin_diff_ec2" {
   private_subnets            = local.private_subnet_ids
   ecs_capacity_provider_name = aws_ecs_capacity_provider.mimir_worker_capacity_provider.name
   environment                = "stag"
-  planet_type                = "odin"
+  planet_type                = "heimdall"
   poller_type                = "DiffPoller"
   short_poller_type          = "diff"
   use_jwt                    = false
   headless_endpoints = [
-    "http://9c-internal-rpc-1.nine-chronicles.com/graphql"
+    "https://heimdall-internal-rpc.nine-chronicles.com/graphql"
   ]
   repository_credentials = var.repository_credentials
 }
 
-module "mimir_worker_odin_action_ec2" {
+module "mimir_worker_heimdall_action_ec2" {
   source = "../../modules/mimir-worker-ec2"
 
   cpu                        = 2048
@@ -36,12 +36,12 @@ module "mimir_worker_odin_action_ec2" {
   private_subnets            = local.private_subnet_ids
   ecs_capacity_provider_name = aws_ecs_capacity_provider.mimir_worker_capacity_provider.name
   environment                = "stag"
-  planet_type                = "odin"
+  planet_type                = "heimdall"
   poller_type                = "TxPoller"
   short_poller_type          = "tx"
   use_jwt                    = false
   headless_endpoints = [
-    "https://9c-internal-rpc-1.nine-chronicles.com/graphql"
+    "https://heimdall-internal-rpc.nine-chronicles.com/graphql"
   ]
   repository_credentials = var.repository_credentials
 }
