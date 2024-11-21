@@ -46,7 +46,7 @@ locals {
   ]
   sentry_secrets = var.use_sentry ? [
     {
-      name      = "Sentry__Dsn",
+      name      = "WORKER_Configuration__SentryDsn",
       valueFrom = "${aws_secretsmanager_secret.secret.arn}:sentry_dsn::"
     }
   ] : []
