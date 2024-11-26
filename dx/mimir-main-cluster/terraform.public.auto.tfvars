@@ -1,7 +1,7 @@
 cluster_name        = "mimir-main"
 region              = "us-east-2"
 environment         = "prod"
-mimir_image         = "git-c93baa314da06fb28d4ec411c7aeb8a4a604d97f"
-mimir_worker_image  = "git-dfef75d813f38ed2bcddeae0026c34cfd912ea1d"
+mimir_image         = "git-a231b946c1d1a70f2265256606b601893f63bd33"
+mimir_worker_image  = "git-a231b946c1d1a70f2265256606b601893f63bd33"
 vpc_cidr_block      = "10.0.0.0/16"
 create_route_tables = true
