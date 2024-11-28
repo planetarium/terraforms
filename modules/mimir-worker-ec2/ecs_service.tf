@@ -14,4 +14,7 @@ resource "aws_ecs_service" "ecs_service" {
     capacity_provider = var.ecs_capacity_provider_name
     weight            = 100
   }
+
+  deployment_minimum_healthy_percent = 0
+  deployment_maximum_percent         = 100
 }
