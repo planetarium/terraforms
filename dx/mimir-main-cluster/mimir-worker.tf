@@ -16,8 +16,7 @@ module "mimir_worker_odin_diff_ec2" {
   poller_type                = "DiffPoller"
   short_poller_type          = "diff"
   headless_endpoints = [
-    "http://odin-rpc-1.nine-chronicles.com/graphql",
-    "http://odin-rpc-2.nine-chronicles.com/graphql"
+    "http://odin-rpc.nine-chronicles.com/graphql"
   ]
   repository_credentials = var.repository_credentials
   use_sentry             = true
@@ -41,8 +40,7 @@ module "mimir_worker_odin_action_ec2" {
   poller_type                = "TxPoller"
   short_poller_type          = "tx"
   headless_endpoints = [
-    "http://odin-rpc-1.nine-chronicles.com/graphql",
-    "http://odin-rpc-2.nine-chronicles.com/graphql"
+    "http://odin-rpc.nine-chronicles.com/graphql"
   ]
   repository_credentials = var.repository_credentials
   use_sentry             = true
@@ -66,8 +64,7 @@ module "mimir_worker_heimdall_diff_ec2" {
   poller_type                = "DiffPoller"
   short_poller_type          = "diff"
   headless_endpoints = [
-    "http://heimdall-rpc-1.nine-chronicles.com/graphql",
-    "http://heimdall-rpc-2.nine-chronicles.com/graphql"
+    "http://heimdall-rpc.nine-chronicles.com/graphql"
   ]
   repository_credentials = var.repository_credentials
   use_sentry             = true
@@ -91,8 +88,7 @@ module "mimir_worker_heimdall_action_ec2" {
   poller_type                = "TxPoller"
   short_poller_type          = "tx"
   headless_endpoints = [
-    "http://heimdall-rpc-1.nine-chronicles.com/graphql",
-    "http://heimdall-rpc-2.nine-chronicles.com/graphql"
+    "http://heimdall-rpc.nine-chronicles.com/graphql"
   ]
   repository_credentials = var.repository_credentials
   use_sentry             = true
