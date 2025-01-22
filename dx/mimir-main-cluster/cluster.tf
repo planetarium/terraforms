@@ -1,5 +1,12 @@
 resource "aws_ecs_cluster" "ecs_cluster" {
   name = var.cluster_name
+
+  tags = {
+    Name    = var.cluster_name,
+    Owner   = "jiwon",
+    Service = "mimir",
+    Team    = "game"
+  }
 }
 
 resource "aws_ecs_capacity_provider" "mimir_capacity_provider" {

@@ -38,7 +38,10 @@ resource "aws_docdb_cluster" "docdb" {
   vpc_security_group_ids = [aws_security_group.docdb.id]
 
   tags = {
-    Name = "${local.kebab_case_prefix}-docdb-cluster"
+    Name    = "${local.kebab_case_prefix}-docdb-cluster",
+    Owner   = "jiwon",
+    Service = "mimir",
+    Team    = "game"
   }
 }
 
@@ -49,6 +52,9 @@ resource "aws_docdb_cluster_instance" "docdb_instance" {
   instance_class     = "db.r6g.xlarge"
 
   tags = {
-    Name = "${local.kebab_case_prefix}-docdb-instance-${count.index}"
+    Name    = "${local.kebab_case_prefix}-docdb-instance-${count.index}"
+    Owner   = "jiwon",
+    Service = "mimir",
+    Team    = "game"
   }
 }
