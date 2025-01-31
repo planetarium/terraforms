@@ -14,7 +14,7 @@ Example of `terraform.private.auto.tfvars.tpl` content:
 
 ```hcl
 ...
-existing_subnet_ids_public = "op://DX/DX Ecs Cluster tfvars/add more/existing_subnet_ids_public"
+existing_subnet_ids_public = "op://Nine Chronicles/DX Ecs Cluster tfvars/add more/existing_subnet_ids_public"
 ...
 ```
 

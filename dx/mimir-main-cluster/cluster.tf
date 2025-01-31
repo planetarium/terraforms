@@ -3,7 +3,7 @@ resource "aws_ecs_cluster" "ecs_cluster" {
 
   tags = {
     Name    = var.cluster_name,
-    Owner   = "jiwon",
+    Owner   = "jiwon2",
     Service = "mimir",
     Team    = "game"
   }
